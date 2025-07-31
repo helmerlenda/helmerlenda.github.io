@@ -1,4 +1,4 @@
-// A URL da sua webhook
+// A URL da sua webhook do n8n
 const WEBHOOK_URL = 'https://n8n.gudanbolizante.site/webhook-test/a50bbe19-2fe5-4037-945e-b39cb8be2ff5';
 
 // Adiciona um "ouvinte" ao evento de envio do formulário
@@ -39,6 +39,7 @@ document.getElementById('contact-form').addEventListener('submit', async functio
         }
     } catch (error) {
         // Em caso de erro de rede ou outro problema, exibe uma mensagem genérica
+        console.error('Erro ao enviar o formulário:', error);
         alert('Houve um erro de conexão. Verifique sua internet e tente novamente.');
     }
 });
