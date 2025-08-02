@@ -1,45 +1,51 @@
-// A URL da sua webhook do n8n
-const WEBHOOK_URL = 'https://n8n.gudanbolizante.site/webhook-test/a50bbe19-2fe5-4037-945e-b39cb8be2ff5';
+// script.js
 
-// Adiciona um "ouvinte" ao evento de envio do formulário
-document.getElementById('contact-form').addEventListener('submit', async function(event) {
-    // Impede o envio padrão do formulário, que recarregaria a página
-    event.preventDefault(); 
+// Espera o HTML carregar completamente antes de executar o código
+document.addEventListener('DOMContentLoaded', () => {
 
-    // Pega o formulário e os dados dos campos
-    const form = event.target;
-    const name = form.elements['name'].value;
-    const email = form.elements['email'].value;
-    const message = form.elements['message'].value;
+  // Pega uma referência ao nosso formulário no HTML pelo seu ID
+  const contactForm = document.getElementById('contact-form');
 
-    // Cria um objeto com os dados que serão enviados
-    const data = {
-        name: name,
-        email: email,
-        message: message
+  // Adiciona um "ouvinte" que fica esperando o clique no botão "Enviar"
+  contactForm.addEventListener('submit', async (event) => {
+    
+    // 1. Impede o comportamento padrão do formulário (que é recarregar a página)
+    event.preventDefault();
+
+    // 2. Pega os valores digitados pelo usuário nos campos
+    const nome = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const mensagem = document.getElementById('message').value;
+
+    // 3. Cria um objeto JavaScript com os dados do formulário
+    const formData = {
+      nome: nome,
+      email: email,
+      mensagem: mensagem
     };
 
     try {
-        // Usa a função fetch para enviar os dados para a webhook
-        const response = await fetch(WEBHOOK_URL, {
-            method: 'POST', // O método de envio é POST
-            headers: {
-                'Content-Type': 'application/json' // Informa que o corpo da requisição é um JSON
-            },
-            body: JSON.stringify(data) // Converte o objeto para uma string JSON
-        });
+      // 4. Usa a função 'fetch' para enviar os dados para o nosso back-end
+      const response = await fetch('https://portfolio-backend-api-h7t6.onrender.com/contato', {
+        method: 'POST', // Dizemos que estamos enviando dados (POST)
+        headers: {
+          'Content-Type': 'application/json' // Avisamos que os dados estão em formato JSON
+        },
+        body: JSON.stringify(formData) // Convertemos nosso objeto para uma string JSON
+      });
 
-        // Verifica se a requisição foi bem-sucedida (código 200)
-        if (response.ok) {
-            alert('Mensagem enviada com sucesso! Obrigado por entrar em contato.');
-            form.reset(); // Limpa os campos do formulário
-        } else {
-            // Se a requisição falhou, exibe uma mensagem de erro
-            alert('Houve um erro ao enviar a mensagem. Por favor, tente novamente.');
-        }
+      // 5. Verifica se o servidor respondeu com sucesso
+      if (response.ok) {
+        alert('Mensagem enviada com sucesso! Obrigado pelo contato.');
+        contactForm.reset(); // Limpa os campos do formulário
+      } else {
+        // Se o servidor respondeu com um erro
+        alert('Ocorreu um erro ao enviar a mensagem. Tente novamente.');
+      }
     } catch (error) {
-        // Em caso de erro de rede ou outro problema, exibe uma mensagem genérica
-        console.error('Erro ao enviar o formulário:', error);
-        alert('Houve um erro de conexão. Verifique sua internet e tente novamente.');
+      // Se houve um erro de rede (ex: servidor desligado)
+      console.error('Erro na requisição:', error);
+      alert('Não foi possível se conectar ao servidor. Verifique sua conexão.');
     }
+  });
 });
