@@ -1,5 +1,27 @@
 // auth.js
+// auth.js
 
+// --- NOVO BLOCO DE VERIFICAÇÃO ---
+// Verifica se o usuário já tem um token ao carregar a página
+const token = localStorage.getItem('authToken');
+
+if (token) {
+  // Se ele tem um token, significa que já está logado.
+  // Então, o redirecionamos direto para o dashboard, pois ele não precisa ver
+  // as páginas de login ou cadastro novamente.
+  window.location.href = 'dashboard.html';
+}
+// --- FIM DO NOVO BLOCO ---
+
+
+// O resto do seu código continua normalmente abaixo
+document.addEventListener('DOMContentLoaded', () => {
+
+  const API_URL = 'https://portfolio-backend-api-h7t6.onrender.com';
+
+  // ... Lógica dos formulários de cadastro e login ...
+
+});
 // Espera o HTML carregar completamente
 document.addEventListener('DOMContentLoaded', () => {
 
