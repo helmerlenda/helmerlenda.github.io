@@ -18,9 +18,28 @@
 
     <main class="main-content">
         <section id="dashboard-content" class="container">
-            <h2>Sua Área de Geração de Leads</h2>
-            <p>Em breve, aqui você poderá configurar e solicitar suas listas de leads B2B.</p>
-            </section>
+            <h2>Solicitar Novos Leads</h2>
+            <p class="contact-subtitle">Preencha os campos abaixo para iniciar uma nova busca.</p>
+            
+            <form id="lead-search-form">
+                <div class="form-group">
+                    <label for="business-type">Tipo de Negócio:</label>
+                    <input type="text" id="business-type" name="business-type" required placeholder="Ex: restaurantes, petshops, academias">
+                </div>
+                <div class="form-group">
+                    <label for="city">Cidade:</label>
+                    <input type="text" id="city" name="city" required placeholder="Ex: São Paulo, Rio de Janeiro">
+                </div>
+                <button type="submit" class="button">Buscar Leads</button>
+            </form>
+        </section>
+        
+        <section id="results-section" class="container">
+            <h2>Leads Gerados</h2>
+            <div id="leads-list">
+                <p>Nenhum lead gerado ainda. Preencha o formulário acima para começar.</p>
+            </div>
+        </section>
     </main>
 
     <footer>
