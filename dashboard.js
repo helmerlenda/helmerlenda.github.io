@@ -1,10 +1,78 @@
-// dashboard.js
+// dashboard.js (Versão Final com Exibição de Leads)
 
 document.addEventListener('DOMContentLoaded', () => {
     const token = localStorage.getItem('authToken');
     const API_URL = 'https://portfolio-backend-api-h7t6.onrender.com';
 
-    // --- SEGURANÇA DA PÁGINA (JÁ EXISTE) ---
+    // Elementos da página que vamos manipular
+    const welcomeMessage = document.getElementById('welcome-message');
+    const logoutButton = document.getElementById('logout-button');
+    const leadSearchForm = document.getElementById('lead-search-form');
+    const leadsListDiv = document.getElementById('leads-list');
+
+    // --- FUNÇÃO PARA RENDERIZAR A LISTA DE LEADS NA TELA ---
+    const renderLeads = (leads) => {
+        // Limpa a mensagem "Nenhum lead gerado ainda."
+        leadsListDiv.innerHTML = '';
+
+        if (leads.length === 0) {
+            leadsListDiv.innerHTML = '<p>Nenhum lead gerado ainda. Preencha o formulário acima para começar.</p>';
+            return;
+        }
+
+        // Cria uma tabela para exibir os leads
+        const table = document.createElement('table');
+        table.className = 'leads-table'; // Para estilização futura
+
+        // Cria o cabeçalho da tabela
+        const thead = `
+            <thead>
+                <tr>
+                    <th>Nome da Empresa</th>
+                    <th>CNPJ</th>
+                    <th>Endereço</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+        `;
+        table.innerHTML = thead;
+
+        // Cria o corpo da tabela e preenche com os leads
+        const tbody = document.createElement('tbody');
+        leads.forEach(lead => {
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${lead.company_name || 'N/A'}</td>
+                <td>${lead.cnpj || 'N/A'}</td>
+                <td>${lead.address || 'N/A'}</td>
+                <td><span class="status">${lead.status || 'N/A'}</span></td>
+            `;
+            tbody.appendChild(row);
+        });
+        table.appendChild(tbody);
+        
+        leadsListDiv.appendChild(table);
+    };
+
+    // --- FUNÇÃO PARA BUSCAR OS LEADS DA API ---
+    const fetchLeads = async () => {
+        try {
+            const response = await fetch(`${API_URL}/api/leads`, {
+                method: 'GET',
+                headers: { 'Authorization': `Bearer ${token}` }
+            });
+            if (!response.ok) throw new Error('Falha ao buscar leads.');
+            
+            const leads = await response.json();
+            renderLeads(leads); // Chama a função para exibir os leads na tela
+        } catch (error) {
+            console.error('Erro ao buscar leads:', error);
+            leadsListDiv.innerHTML = '<p style="color: red;">Erro ao carregar seus leads.</p>';
+        }
+    };
+
+
+    // --- LÓGICA PRINCIPAL (JÁ EXISTENTE, COM UMA ADIÇÃO) ---
     if (!token) {
         window.location.href = 'login.html';
         return;
@@ -18,62 +86,22 @@ document.addEventListener('DOMContentLoaded', () => {
         if (!response.ok) {
             localStorage.removeItem('authToken');
             window.location.href = 'login.html';
-            return Promise.reject('Token inválido'); // Rejeita a promessa para parar a execução
+            return Promise.reject('Token inválido');
         }
         return response.json();
     })
     .then(data => {
         if (data && data.user) {
-            const welcomeMessage = document.getElementById('welcome-message');
             welcomeMessage.textContent = `Bem-vindo, ${data.user.email}!`;
+            // -- ADIÇÃO IMPORTANTE: Depois de confirmar o login, busca os leads --
+            fetchLeads();
         }
     })
-    .catch(error => {
-        if (error !== 'Token inválido') { // Evita logar o erro de redirecionamento
-           console.error('Erro ao buscar perfil:', error);
-        }
-    });
+    .catch(error => { /* ...código de catch já existente... */ });
 
-    // --- LÓGICA DO LOGOUT (JÁ EXISTE) ---
-    const logoutButton = document.getElementById('logout-button');
-    logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('authToken');
-        alert('Você foi desconectado com sucesso.');
-        window.location.href = 'login.html';
-    });
-
-
-    // --- NOVA LÓGICA PARA O FORMULÁRIO DE BUSCA DE LEADS ---
-    const leadSearchForm = document.getElementById('lead-search-form');
-
-    leadSearchForm.addEventListener('submit', async (event) => {
-        event.preventDefault(); // Impede o recarregamento da página
-
-        const businessType = document.getElementById('business-type').value;
-        const city = document.getElementById('city').value;
-
-        try {
-            const response = await fetch(`${API_URL}/api/leads/request`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    // Enviamos o token para a rota protegida
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ businessType, city })
-            });
-
-            const data = await response.json();
-
-            if (response.ok) {
-                alert(data.message); // Ex: "Pedido de leads recebido! ..."
-            } else {
-                // Mostra a mensagem de erro que veio da API
-                alert(`Erro: ${data.message}`);
-            }
-        } catch (error) {
-            console.error('Erro de rede na busca de leads:', error);
-            alert('Não foi possível se conectar ao servidor. Tente novamente.');
-        }
-    });
+    // Lógica do Logout (já existente)
+    logoutButton.addEventListener('click', () => { /* ...código do logout... */ });
+    
+    // Lógica do Formulário de Busca (já existente)
+    leadSearchForm.addEventListener('submit', async (event) => { /* ...código do form... */ });
 });
