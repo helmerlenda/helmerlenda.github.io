@@ -253,3 +253,32 @@ footer .container {
         text-align: center;
     }
 }
+/* --- Estilos para a Tabela de Leads --- */
+
+.leads-table {
+  width: 100%; /* Faz a tabela usar toda a largura disponível */
+  border-collapse: collapse; /* Deixa as bordas limpas e únicas */
+  margin-top: 2rem; /* Adiciona um espaço acima da tabela */
+  text-align: left; /* Alinha o texto à esquerda */
+}
+
+.leads-table th,
+.leads-table td {
+  /* ESTA É A PARTE MAIS IMPORTANTE */
+  padding: 12px 15px; /* Adiciona o "respiro" (espaçamento interno) nas células */
+  border-bottom: 1px solid var(--border-color); /* Cria uma linha separadora */
+}
+
+.leads-table th {
+  font-family: var(--font-heading);
+  font-weight: 500;
+  color: var(--light-text);
+}
+
+.leads-table tbody tr:hover {
+  background-color: var(--dark-card); /* Efeito visual ao passar o mouse */
+}
+
+.leads-table a {
+  text-decoration: underline;
+}
