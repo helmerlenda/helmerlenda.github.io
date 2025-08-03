@@ -92,7 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
           alert('Login realizado com sucesso! Você será redirecionado para a página principal.');
           // Redireciona o usuário para a página principal (ou um dashboard futuro)
-          window.location.href = 'index.html';
+          window.location.href = 'dashboard.html';
         } else {
           // Mostra a mensagem de erro que veio da API (ex: "Credenciais inválidas")
           alert(`Erro no login: ${data.message}`);
