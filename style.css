@@ -510,3 +510,64 @@ body {
     .leads-table td:last-child { border-bottom: none; }
     .leads-table td::before { content: attr(data-label); font-weight: 500; color: var(--secondary-text); text-align: left; padding-right: 1rem; }
 }
+/* --- CABEÇALHO PROFISSIONAL E RESPONSIVO (VERSÃO FINAL) --- */
+
+/* Esconde o botão 'hambúrguer' em telas grandes */
+.mobile-nav-toggle {
+    display: none;
+}
+
+@media (max-width: 768px) {
+    .landing-header nav {
+        padding: 0 1rem; /* Adiciona padding nas laterais */
+    }
+
+    /* Esconde os links de navegação por padrão no mobile */
+    .nav-links {
+        position: fixed;
+        inset: 0 0 0 30%; /* Ocupa 70% da tela, da direita para a esquerda */
+        flex-direction: column;
+        justify-content: center;
+        gap: 2rem;
+        background-color: var(--dark-card);
+        padding: 2rem;
+        transform: translateX(100%);
+        transition: transform 350ms ease-out;
+        z-index: 100; /* Garante que fique por cima de tudo */
+    }
+
+    /* Mostra o menu quando o botão for clicado (controlado via JS) */
+    .nav-links[data-visible="true"] {
+        transform: translateX(0%);
+    }
+
+    /* Mostra o botão 'hambúrguer' no mobile */
+    .mobile-nav-toggle {
+        display: block;
+        position: absolute;
+        top: 2rem;
+        right: 1.5rem;
+        z-index: 9999;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .mobile-nav-toggle .fa-bars {
+        color: var(--light-text);
+        font-size: 1.5rem;
+    }
+}
+
+/* Acessibilidade: texto para leitores de tela */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
