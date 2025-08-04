@@ -665,3 +665,24 @@ body {
     font-weight: 500;
     color: var(--secondary-text);
 }
+/* --- AJUSTE FINO DE TAMANHO DOS TÍTULOS --- */
+
+/* Título principal do Dashboard (Bem-vindo...) */
+.main-dashboard-content h1 {
+    font-size: 2.1rem; /* Antes era 1.8rem */
+}
+
+/* Títulos das seções (Inicie uma nova prospecção, etc) */
+.main-dashboard-content h2 {
+    font-size: 1.35rem; /* Antes era 1.25rem */
+}
+
+/* Números grandes dos cards */
+.stat-number {
+    font-size: 2.5rem; /* Antes era 2.25rem */
+}
+
+/* Ajuste específico para o card de plano, para não quebrar a linha */
+#plan-status {
+    font-size: 2.2rem; /* Antes era 2rem */
+}
