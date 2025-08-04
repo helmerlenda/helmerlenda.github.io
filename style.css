@@ -1,3 +1,4 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
 /* --- Variáveis de Cores e Fontes --- */
 :root {
     --primary-color: #0D9488; /* Verde-azulado (teal) para destaque */
@@ -428,4 +429,153 @@ footer .container {
 .section-subtitle {
     margin-bottom: 1.5rem;
     color: var(--secondary-text);
+}
+/* --- REFINAMENTOS DE DESIGN PROFISSIONAL --- */
+
+/* 1. Nova Fonte e Cores de Base */
+:root {
+    --dark-bg: #111827;
+    --dark-card: #1F2937;
+    --border-color: #374151;
+    --primary-color: #3B82F6; /* Um azul mais vibrante */
+    --primary-hover: #2563EB;
+    --light-text: #F9FAFB;
+    --secondary-text: #9CA3AF;
+    --font-sans: 'Inter', sans-serif; /* Nossa nova fonte */
+}
+
+body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased; /* Deixa a fonte mais nítida */
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* 2. Ajustes de Tipografia e Hierarquia */
+.main-dashboard-content h1 {
+    font-weight: 600;
+    font-size: 1.8rem;
+    color: var(--light-text);
+}
+
+.main-dashboard-content h2 {
+    font-weight: 600;
+    font-size: 1.25rem;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+
+.section-subtitle, .card-footer {
+    font-size: 0.875rem;
+    color: var(--secondary-text);
+}
+
+
+/* 3. Refinamento dos Cards de Estatísticas */
+.card {
+    padding: 1.5rem;
+    border-radius: 12px; /* Cantos mais arredondados */
+    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+    transition: transform 0.2s ease;
+}
+
+.card:hover {
+    transform: translateY(-4px);
+}
+
+.stat-number {
+    font-size: 2.25rem;
+    font-weight: 700;
+    letter-spacing: -1px;
+}
+
+
+/* 4. Refinamento dos Formulários e Botões */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    background-color: #374151; /* Fundo um pouco mais claro */
+    border: 1px solid var(--border-color);
+    padding: 12px;
+    font-size: 1rem;
+    border-radius: 8px; /* Cantos mais arredondados */
+}
+
+.form-group input:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.button {
+    font-weight: 600;
+    padding: 12px 20px;
+    border-radius: 8px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background-color 0.2s ease;
+}
+
+
+/* 5. Refinamento da Barra Lateral (Sidebar) */
+.sidebar {
+    width: 260px;
+    background-color: #111827; /* Fundo mais escuro que os cards */
+}
+
+.sidebar-header .logo {
+    font-weight: 700;
+}
+
+.nav-link {
+    font-weight: 500;
+}
+
+.nav-link.active, .nav-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+/* 6. Refinamento da Tabela de Leads */
+.leads-table {
+    margin-top: 1.5rem;
+    border-spacing: 0;
+}
+
+.leads-table th {
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 1rem;
+}
+
+.leads-table td {
+    padding: 1rem;
+    color: var(--light-text);
+    background-color: #1F2937; /* Cor de fundo das linhas */
+}
+
+/* Intercala as cores das linhas para melhor leitura */
+.leads-table tbody tr:nth-child(even) td {
+    background-color: #253141; 
+}
+
+.leads-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.leads-table tbody tr:hover td {
+    background-color: var(--primary-color);
+}
+
+.leads-table td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+.leads-table td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+
+.leads-table tr td {
+    border-bottom: 5px solid #111827; /* Espaçamento entre as linhas */
+}
+
+.leads-table thead {
+    display: none; /* Esconde o cabeçalho antigo, pois os novos cards são mais visuais */
 }
