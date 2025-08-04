@@ -52,29 +52,37 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // --- FUNÇÃO PARA RENDERIZAR A LISTA DE LEADS ---
-    const renderLeads = (leads) => {
-        const leadsListDiv = document.getElementById('leads-list');
-        if(!leadsListDiv) return;
+    // dashboard.js -> substitua apenas a função renderLeads
 
-        leadsListDiv.innerHTML = '';
-        if (leads.length === 0) {
-            leadsListDiv.innerHTML = '<p>Nenhum lead gerado ainda. Preencha o formulário acima para começar.</p>';
-            return;
-        }
+const renderLeads = (leads) => {
+    const leadsListDiv = document.getElementById('leads-list');
+    if(!leadsListDiv) return;
 
-        const table = document.createElement('table');
-        table.className = 'leads-table';
-        const thead = `<thead><tr><th>Nome da Empresa</th><th>Endereço</th><th>Telefone</th><th>Site</th></tr></thead>`;
-        table.innerHTML = thead;
-        const tbody = document.createElement('tbody');
-        leads.forEach(lead => {
-            const row = document.createElement('tr');
-            row.innerHTML = `<td>${lead.company_name || 'N/A'}</td><td>${lead.address || 'N/A'}</td><td>${lead.phone || 'N/A'}</td><td>${lead.website ? `<a href="${lead.website}" target="_blank" rel="noopener noreferrer">${lead.website}</a>` : 'N/A'}</td>`;
-            tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        leadsListDiv.appendChild(table);
-    };
+    leadsListDiv.innerHTML = '';
+    if (leads.length === 0) {
+        leadsListDiv.innerHTML = '<p>Nenhum lead gerado ainda. Preencha o formulário acima para começar.</p>';
+        return;
+    }
+
+    const table = document.createElement('table');
+    table.className = 'leads-table';
+    const thead = `<thead><tr><th>Nome da Empresa</th><th>Endereço</th><th>Telefone</th><th>Site</th></tr></thead>`;
+    table.innerHTML = thead;
+    const tbody = document.createElement('tbody');
+    leads.forEach(lead => {
+        const row = document.createElement('tr');
+        // A MUDANÇA ESTÁ AQUI: adicionamos os atributos data-label
+        row.innerHTML = `
+            <td data-label="Empresa">${lead.company_name || 'N/A'}</td>
+            <td data-label="Endereço">${lead.address || 'N/A'}</td>
+            <td data-label="Telefone">${lead.phone || 'N/A'}</td>
+            <td data-label="Site">${lead.website ? `<a href="${lead.website}" target="_blank" rel="noopener noreferrer">${lead.website}</a>` : 'N/A'}</td>
+        `;
+        tbody.appendChild(row);
+    });
+    table.appendChild(tbody);
+    leadsListDiv.appendChild(table);
+};
 
     // --- FUNÇÃO PARA BUSCAR OS LEADS ---
     const fetchLeads = async (token) => {
