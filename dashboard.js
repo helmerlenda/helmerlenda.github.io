@@ -1,4 +1,4 @@
-// dashboard.js (Versão Final Completa)
+// dashboard.js (Versão Final Completa e Verificada)
 
 document.addEventListener('DOMContentLoaded', () => {
     // --- FUNÇÃO PARA MOSTRAR NOTIFICAÇÕES PROFISSIONAIS ---
@@ -19,11 +19,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 5000);
     };
 
-    // --- FUNÇÃO PARA CRIAR OS GRÁFICOS (AGORA INTELIGENTE) ---
+    // --- FUNÇÃO PARA CRIAR OS GRÁFICOS ---
     const createCharts = (leadsCount = 0, searchesCount = 0) => {
-        // Se a contagem for 0, usa um array de zeros para uma linha reta.
-        // Se não, usa dados de exemplo.
-        const leadsChartData = leadsCount === 0 ? [0, 0, 0, 0, 0, 0, 0] : [12, 19, 3, 5, 2, 3, 15];
+       const leadsChartData = leadsCount === 0 ? [0, 0, 0, 0, 0, 0, 0] : [12, 19, 3, 5, 2, 3, 15];
         const searchesChartData = searchesCount === 0 ? [0, 0, 0, 0, 0, 0, 0] : [1, 2, 1, 3, 1, 4, 2];
         const labels = ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'];
 
@@ -53,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- FUNÇÃO PARA RENDERIZAR A LISTA DE LEADS (RESTAURADA) ---
+    // --- FUNÇÃO PARA RENDERIZAR A LISTA DE LEADS ---
     const renderLeads = (leads) => {
         const leadsListDiv = document.getElementById('leads-list');
         if(!leadsListDiv) return;
@@ -78,7 +76,7 @@ document.addEventListener('DOMContentLoaded', () => {
         leadsListDiv.appendChild(table);
     };
 
-    // --- FUNÇÃO PARA BUSCAR OS LEADS (RESTAURADA E MELHORADA) ---
+    // --- FUNÇÃO PARA BUSCAR OS LEADS ---
     const fetchLeads = async (token) => {
         try {
             const response = await fetch(`${API_URL}/api/leads`, {
@@ -87,15 +85,11 @@ document.addEventListener('DOMContentLoaded', () => {
             });
             if (!response.ok) throw new Error('Falha ao buscar leads.');
             const leads = await response.json();
-            
-            // ATUALIZA O CARD DE LEADS GERADOS
+
             const totalLeadsEl = document.getElementById('total-leads');
             if(totalLeadsEl) totalLeadsEl.textContent = leads.length;
             
-            // CHAMA A FUNÇÃO PARA CRIAR OS GRÁFICOS COM OS DADOS REAIS
-            createCharts(leads.length, 0); // Passamos o número real de leads
-            
-            // CHAMA A FUNÇÃO PARA EXIBIR A TABELA
+            createCharts(leads.length, 0);
             renderLeads(leads);
         } catch (error) {
             console.error('Erro ao buscar leads:', error);
@@ -130,4 +124,43 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .then(data => {
         if (data && data.user) {
-            if(welcomeMessage) welcomeMessage.textContent = `Bem-vindo, ${data.user.email}!
+            if(welcomeMessage) welcomeMessage.textContent = `Bem-vindo, ${data.user.email}!`;
+            fetchLeads(token);
+        }
+    })
+    .catch(error => {
+        if (error !== 'Token inválido') console.error('Erro ao buscar perfil:', error);
+    });
+
+    if(logoutButton) {
+        logoutButton.addEventListener('click', () => {
+            localStorage.removeItem('authToken');
+            showNotification('Você foi desconectado com sucesso.', 'success');
+            setTimeout(() => window.location.href = 'login.html', 1500);
+        });
+    }
+    
+    if(leadSearchForm) {
+        leadSearchForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const businessType = document.getElementById('business-type').value;
+            const city = document.getElementById('city').value;
+            try {
+                const response = await fetch(`${API_URL}/api/leads/request`, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json', 'Authorization': `Bearer ${token}` },
+                    body: JSON.stringify({ businessType, city })
+                });
+                const data = await response.json();
+                if (response.ok) {
+                    showNotification(data.message);
+                } else {
+                    showNotification(`Erro: ${data.message}`, 'error');
+                }
+            } catch (error) {
+                console.error('Erro de rede na busca de leads:', error);
+                showNotification('Não foi possível se conectar ao servidor.', 'error');
+            }
+        });
+    }
+});
