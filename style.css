@@ -1084,3 +1084,51 @@ body {
         padding-top: 4rem;
     }
 }
+/* --- AJUSTES FINAIS DE RESPONSIVIDADE (MOBILE) --- */
+
+/* 1. Melhora a apresentação da tabela de leads no mobile */
+@media (max-width: 768px) {
+    .leads-table td {
+        /* Garante que o texto tenha espaço para respirar e o valor se alinhe bem */
+        flex-basis: 100%; /* Faz cada célula ocupar a linha inteira no modo "card" */
+        justify-content: flex-start; /* Alinha o label e o valor à esquerda */
+        text-align: left;
+    }
+
+    .leads-table td::before {
+        /* Garante que o "label" não seja muito largo */
+        flex-shrink: 0;
+        width: 120px; /* Largura fixa para os labels, alinhando os valores */
+    }
+}
+
+/* 2. Conserta o cabeçalho da página inicial em telas pequenas */
+@media (max-width: 768px) {
+    .landing-header nav {
+        /* Permite que o logo fique de um lado e os links do outro */
+        flex-direction: row;
+        flex-wrap: wrap; /* Permite que os links quebrem a linha se necessário */
+    }
+
+    .nav-links {
+        /* Ocupa toda a largura abaixo do logo quando quebrar a linha */
+        flex-basis: 100%;
+        justify-content: center;
+        gap: 0.5rem; /* Diminui o espaço entre os links */
+        margin-top: 1rem; /* Adiciona espaço se quebrar a linha */
+    }
+}
+
+/* Ajuste para telas muito estreitas */
+@media (max-width: 480px) {
+    .nav-links {
+        /* Força os botões a ficarem um embaixo do outro */
+        flex-direction: column;
+        align-items: stretch; /* Faz os botões ocuparem a largura total */
+    }
+
+    .nav-links a.button {
+        text-align: center;
+        justify-content: center;
+    }
+}
