@@ -731,3 +731,29 @@ body {
   display: block;
   margin: 0 auto 2.5rem auto; /* Centraliza a logo e adiciona espaço abaixo */
 }
+/* --- RESPONSIVIDADE PARA O DASHBOARD (MOBILE) --- */
+
+/* Esta regra se aplica a telas com largura de 768px ou menos */
+@media (max-width: 768px) {
+    .sidebar {
+        /* Esconde a barra lateral completamente */
+        display: none;
+    }
+
+    .main-dashboard-content {
+        /* Faz o conteúdo principal ocupar toda a largura da tela */
+        margin-left: 0;
+        padding: 1.5rem; /* Diminui o espaçamento em telas menores */
+    }
+
+    .dashboard-header {
+        flex-direction: column; /* Coloca o título e o botão um embaixo do outro */
+        align-items: flex-start;
+        gap: 1rem;
+    }
+
+    .stats-cards {
+        /* Mantém o grid, que já se ajusta bem */
+        gap: 1rem;
+    }
+}
