@@ -571,3 +571,7 @@ body {
   white-space: nowrap;
   border-width: 0;
 }
+/* Remove o sublinhado dos links de navegação da sidebar */
+.sidebar-nav .nav-link {
+    text-decoration: none;
+}

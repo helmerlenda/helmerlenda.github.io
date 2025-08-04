@@ -90,9 +90,11 @@ document.addEventListener('DOMContentLoaded', () => {
           // Guardamos o token aqui para que o usuário continue logado.
           localStorage.setItem('authToken', data.token);
 
-          alert('Login realizado com sucesso! Você será redirecionado para a página principal.');
-          // Redireciona o usuário para a página principal (ou um dashboard futuro)
-          window.location.href = 'dashboard.html';
+          // Cole este bloco no lugar do seu alert() e window.location.href antigos
+showNotification('Login realizado com sucesso! Redirecionando...', 'success');
+setTimeout(() => {
+    window.location.href = 'dashboard.html';
+}, 1500); // Espera 1.5 segundos antes de redirecionar
         } else {
           // Mostra a mensagem de erro que veio da API (ex: "Credenciais inválidas")
           alert(`Erro no login: ${data.message}`);
