@@ -3,81 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Meu Portfólio Pessoal</title>
-
+    <title>LeadGen - Inteligência de Mercado para Prospecção B2B</title>
+    <meta name="description" content="Transforme dados públicos em listas de prospecção B2B prontas para sua equipe comercial. Pare de procurar, comece a vender.">
+    
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&family=Roboto:wght@400;500&display=swap" rel="stylesheet">
-
-    <link rel="stylesheet" href="style.css">
-    
-    <script src="script.js" defer></script>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
-<body>
+<body class="landing-body">
 
-    <header class="hero">
-        <div class="container">
-            <div class="intro-content">
-                <img src="https://via.placeholder.com/150" alt="Sua Foto" class="profile-photo">
-                <div class="intro-text">
-                    <h1>Olá, eu sou [Seu Nome]</h1>
-                    <p>Sou um desenvolvedor front-end apaixonado por criar experiências digitais intuitivas e bonitas, transformando ideias em realidade através de código.</p>
-                </div>
+    <header class="landing-header">
+        <nav class="container">
+            <a href="#" class="nav-logo">
+                <img src="logo.png" alt="LeadGen Logo" class="logo-image-nav">
+                <span>LeadGen</span>
+            </a>
+            <div class="nav-links">
+                <a href="#features">Funcionalidades</a>
+                <a href="#pricing">Preços</a>
+                <a href="login.html" class="button button-secondary">Entrar</a>
+                <a href="cadastro.html" class="button">Comece Grátis</a>
             </div>
-        </div>
+        </nav>
     </header>
 
-    <main class="main-content">
-        <section id="projects" class="container">
-            <h2>Meus Projetos</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Imagem do Projeto 1">
-                    <div class="project-info">
-                      <h3>Título do Projeto 1</h3>
-                      <p>Um aplicativo de gerenciamento de tarefas desenvolvido com React e Node.js, focado em produtividade e colaboração em equipe.</p>
-                    </div>
+    <main>
+        <section id="hero" class="hero-section">
+            <div class="container hero-content">
+                <h1>Pare de Procurar. Comece a Vender.</h1>
+                <p class="subtitle">A LeadGen transforma milhões de dados públicos em listas de prospecção B2B ultra-segmentadas, prontas para sua equipe comercial. Encontre seus próximos clientes em minutos, não em meses.</p>
+                <a href="cadastro.html" class="button button-large">
+                    <i class="fas fa-rocket"></i>
+                    <span>Iniciar Teste Gratuito</span>
+                </a>
+                <div class="hero-image-container">
+                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070" alt="Dashboard da plataforma LeadGen" class="hero-image">
                 </div>
-                <div class="project-card">
-                    <img src="https://via.placeholder.com/400x250" alt="Imagem do Projeto 2">
-                    <div class="project-info">
-                      <h3>Título do Projeto 2</h3>
-                      <p>Um site e-commerce de roupas responsivo e performático, utilizando HTML, CSS e JavaScript puro para uma experiência de compra fluida.</p>
-                    </div>
-                </div>
-                </div>
+            </div>
         </section>
 
-        <section id="contact" class="container">
-            <h2>Entre em Contato</h2>
-            <p class="contact-subtitle">Tem alguma pergunta ou quer trabalhar junto comigo? Preencha o formulário abaixo.</p>
-            <form id="contact-form">
-                <div class="form-group">
-                    <label for="name">Nome:</label>
-                    <input type="text" id="name" name="name" required placeholder="Digite seu nome completo">
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">Inteligência de Mercado ao seu Alcance</h2>
+                <p class="section-subtitle">Nossa plataforma faz o trabalho pesado para que você possa focar no que importa: fechar negócios.</p>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-bullseye"></i>
+                        <h3>Busca Ultra-Segmentada</h3>
+                        <p>Filtre empresas por nicho, cidade, estado e tamanho. Encontre exatamente quem você procura, onde quer que estejam.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-bolt"></i>
+                        <h3>Enriquecimento Automático</h3>
+                        <p>Transformamos CNPJs brutos em perfis de empresa completos, com endereços, telefones, sites e muito mais, usando dados públicos atualizados.</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-download"></i>
+                        <h3>Leads Prontos para Ação</h3>
+                        <p>Receba listas limpas e organizadas, prontas para serem importadas no seu CRM ou planilha. Prospecção nunca foi tão fácil.</p>
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+            </div>
+        </section>
+
+        <section id="pricing" class="pricing-section">
+             <div class="container">
+                <h2 class="section-title">Um Plano Simples e Transparente</h2>
+                <p class="section-subtitle">Comece de graça e cresça conforme sua necessidade.</p>
+                <div class="pricing-card">
+                    <h3>Free Trial</h3>
+                    <p class="price">R$0</p>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> 1 Busca de Leads Gratuita</li>
+                        <li><i class="fas fa-check-circle"></i> Até 20 Leads Enriquecidos</li>
+                        <li><i class="fas fa-check-circle"></i> Acesso à Plataforma</li>
+                    </ul>
+                    <a href="cadastro.html" class="button">Começar Agora</a>
                 </div>
-                <div class="form-group">
-                    <label for="message">Perguntas:</label>
-                    <textarea id="message" name="message" rows="5" required placeholder="Deixe sua dúvida ou mensagem aqui..."></textarea>
-                </div>
-                <button type="submit" class="button">Enviar Mensagem</button>
-            </form>
-            <div class="social-links">
-                <a href="#" target="_blank">LinkedIn</a>
-                <a href="#" target="_blank">GitHub</a>
-                <a href="#" target="_blank">Twitter</a>
             </div>
         </section>
     </main>
 
-    <footer>
-    <div class="container">
-        <p>&copy; 2025 Helmerlenda. Todos os direitos reservados.</p>
-    </div>
-</footer>
-</html>
+    <footer class="landing-footer">
+        <div class="container">
+            <img src="logo.png" alt="LeadGen Logo" class="logo-image-footer">
+            <p>&copy; 2025 LeadGen. Todos os direitos reservados.</p>
+        </div>
+    </footer>
 
+</body>
+</html>
