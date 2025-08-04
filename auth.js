@@ -1,7 +1,7 @@
-// auth.js (Versão Completa e Final)
+// auth.js (Versão Definitiva e Completa)
 
 // --- FUNÇÃO PARA MOSTRAR NOTIFICAÇÕES PROFISSIONAIS ---
-// Esta função é necessária para as mensagens de sucesso e erro.
+// Esta função cria e gerencia as mensagens de sucesso e erro.
 const showNotification = (message, type = 'success') => {
     // Primeiro, verifica se o container de notificações existe no HTML.
     let container = document.getElementById('notification-container');
@@ -28,12 +28,15 @@ const showNotification = (message, type = 'success') => {
 
 
 // --- BLOCO DE VERIFICAÇÃO INICIAL ---
-// Verifica se o usuário já tem um token e está tentando acessar as páginas de login/cadastro.
+// Roda imediatamente para verificar se o usuário já está logado.
 const token = localStorage.getItem('authToken');
 if (token && (window.location.pathname.endsWith('/login.html') || window.location.pathname.endsWith('/cadastro.html'))) {
-  // Se sim, redireciona imediatamente para o dashboard.
+  // Se o usuário tem um token E está tentando acessar as páginas de login/cadastro,
+  // ele é redirecionado imediatamente para o dashboard, pois não precisa vê-las.
   window.location.href = 'dashboard.html';
 }
+
+
 // --- LÓGICA PRINCIPAL DA PÁGINA ---
 // Só executa o resto do código depois que o HTML estiver totalmente carregado.
 document.addEventListener('DOMContentLoaded', () => {
@@ -44,7 +47,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- LÓGICA PARA O FORMULÁRIO DE CADASTRO ---
   const registerForm = document.getElementById('register-form');
 
-
+  
   if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -62,7 +65,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (response.ok) {
-          showNotification('Cadastro realizado com sucesso! Redirecionando para o login...', 'success');
+          showNotification('Cadastro realizado com sucesso! Redirecionando...', 'success');
           setTimeout(() => window.location.href = 'login.html', 2000);
         } else {
           showNotification(`Erro no cadastro: ${data.message}`, 'error');
@@ -96,7 +99,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (response.ok) {
-         localStorage.setItem('authToken', data.token);
+          localStorage.setItem('authToken', data.token);
           showNotification('Login realizado com sucesso! Redirecionando...', 'success');
           setTimeout(() => window.location.href = 'dashboard.html', 1500);
         } else {
