@@ -984,37 +984,34 @@ body {
     .features-section, .pricing-section, .hero-section { padding: 3.5rem 1rem; }
     .section-title { font-size: 2.5rem; }
 }
-/* --- ESTILOS DAS PÁGINAS DE AUTENTICAÇÃO --- */
+/* --- ESTILOS CORRIGIDOS DAS PÁGINAS DE AUTENTICAÇÃO --- */
 
 .auth-body {
     background-color: var(--dark-bg);
+    height: 100vh; /* Garante que o body ocupe a tela toda */
     margin: 0;
-    padding: 0;
     overflow: hidden; /* Evita barras de rolagem desnecessárias */
 }
 
 .auth-container {
     display: grid;
     grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
-    height: 100vh;
+    height: 100%; /* Ocupa a altura total do body */
+    width: 100%;
 }
 
 /* Coluna da Esquerda (Branding) */
 .auth-brand-column {
     background-color: var(--dark-card);
     padding: 3rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.auth-brand-column .nav-logo {
-    margin-bottom: auto; /* Empurra o texto principal para baixo */
+    display: flex; /* Ativa o Flexbox */
+    flex-direction: column; /* Organiza os itens em uma coluna */
+    justify-content: space-between; /* ESTA É A MÁGICA: empurra o primeiro item para o topo e o último para baixo */
 }
 
 .brand-text h2 {
     font-family: var(--font-display);
-    font-size: 3rem;
+    font-size: 2.8rem;
     color: var(--light-text);
     line-height: 1.2;
     margin-bottom: 1rem;
@@ -1022,16 +1019,16 @@ body {
 
 .brand-text p {
     font-size: 1.1rem;
-    max-width: 400px;
+    max-width: 420px;
     color: var(--secondary-text);
 }
 
 /* Coluna da Direita (Formulário) */
 .auth-form-column {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 3rem;
+    display: flex; /* Ativa o Flexbox */
+    justify-content: center; /* Centraliza horizontalmente */
+    align-items: center; /* ESTA É A MÁGICA: Centraliza verticalmente */
+    padding: 2rem;
 }
 
 .form-wrapper {
@@ -1069,6 +1066,20 @@ body {
 .auth-switch-link a {
     color: var(--primary-color);
     font-weight: 500;
+}
+
+/* Responsividade Corrigida */
+@media (max-width: 900px) {
+    .auth-container {
+        grid-template-columns: 1fr; /* Uma coluna só */
+    }
+    .auth-brand-column {
+        display: none; /* Esconde a coluna da marca no mobile para focar no formulário */
+    }
+    .auth-form-column {
+        justify-content: flex-start; /* Alinha ao topo em telas menores */
+        padding-top: 5rem;
+    }
 }
 
 /* Responsividade para as telas de autenticação */
