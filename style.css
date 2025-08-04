@@ -579,3 +579,58 @@ body {
 .leads-table thead {
     display: none; /* Esconde o cabeçalho antigo, pois os novos cards são mais visuais */
 }
+/* --- PASSO FINAL: POLIMENTO PROFISSIONAL --- */
+
+/* 1. Nova Cor de Destaque */
+:root {
+    --success-color: #10B981; /* Verde para sucesso e dados positivos */
+}
+
+/* 2. Espaçamento do Botão do Formulário */
+#lead-search-form .button {
+    margin-top: 1rem; /* Adiciona o espaço que você pediu */
+}
+
+/* 3. Estilos para as Notificações Profissionais ("Toasts") */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.toast {
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards;
+}
+
+@keyframes slideIn {
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.toast.success {
+    background-color: var(--success-color);
+}
+
+.toast.error {
+    background-color: #EF4444; /* Vermelho para erros */
+}
+
+.toast i {
+    font-size: 1.2rem;
+}

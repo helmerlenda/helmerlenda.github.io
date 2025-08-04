@@ -1,135 +1,100 @@
-// dashboard.js (Versão Final com a Tabela Correta)
+// dashboard.js (Versão Final com Gráficos e Notificações)
 
 document.addEventListener('DOMContentLoaded', () => {
+    // --- FUNÇÃO PARA MOSTRAR NOTIFICAÇÕES PROFISSIONAIS ---
+    const showNotification = (message, type = 'success') => {
+        const container = document.getElementById('notification-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        
+        const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+        toast.innerHTML = `<i class="fas ${iconClass}"></i><span>${message}</span>`;
+        
+        container.appendChild(toast);
+
+        setTimeout(() => {
+            toast.remove();
+        }, 5000); // A notificação some após 5 segundos
+    };
+
+    // --- FUNÇÃO PARA CRIAR OS GRÁFICOS ---
+    const createCharts = () => {
+        // Dados de exemplo (no futuro, viriam da API)
+        const leadsData = {
+            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            data: [12, 19, 3, 5, 2, 3, 15]
+        };
+        const searchesData = {
+            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb', 'Dom'],
+            data: [1, 2, 1, 3, 1, 4, 2]
+        };
+
+        const chartOptions = {
+            responsive: true,
+            maintainAspectRatio: false,
+            plugins: { legend: { display: false } },
+            scales: { x: { display: false }, y: { display: false } },
+            elements: {
+                point: { radius: 0 },
+                line: {
+                    borderWidth: 2,
+                    tension: 0.4,
+                }
+            }
+        };
+
+        // Cria o Gráfico de Leads
+        const leadsCtx = document.getElementById('leads-chart').getContext('2d');
+        new Chart(leadsCtx, {
+            type: 'line',
+            data: {
+                labels: leadsData.labels,
+                datasets: [{ 
+                    label: 'Leads', 
+                    data: leadsData.data, 
+                    borderColor: 'rgba(59, 130, 246, 0.8)',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    fill: true
+                }]
+            },
+            options: chartOptions
+        });
+        
+        // Cria o Gráfico de Buscas
+        const searchesCtx = document.getElementById('searches-chart').getContext('2d');
+        new Chart(searchesCtx, {
+            type: 'line',
+            data: {
+                labels: searchesData.labels,
+                datasets: [{ 
+                    label: 'Buscas', 
+                    data: searchesData.data,
+                    borderColor: 'rgba(16, 185, 129, 0.8)',
+                    backgroundColor: 'rgba(16, 185, 129, 0.1)',
+                    fill: true
+                }]
+            },
+            options: chartOptions
+        });
+    };
+
+
+    // --- LÓGICA PRINCIPAL DA PÁGINA ---
     const token = localStorage.getItem('authToken');
     const API_URL = 'https://portfolio-backend-api-h7t6.onrender.com';
-
-    // Elementos da página
-    const welcomeMessage = document.getElementById('welcome-message');
-    const logoutButton = document.getElementById('logout-button');
-    const leadSearchForm = document.getElementById('lead-search-form');
-    const leadsListDiv = document.getElementById('leads-list');
-
-    // --- FUNÇÃO PARA RENDERIZAR A LISTA DE LEADS NA TELA ---
-    const renderLeads = (leads) => {
-        leadsListDiv.innerHTML = ''; // Limpa a área
-
-        if (leads.length === 0) {
-            leadsListDiv.innerHTML = '<p>Nenhum lead gerado ainda. Preencha o formulário para começar.</p>';
-            return;
-        }
-
-        const table = document.createElement('table');
-        table.className = 'leads-table';
-
-        // Cabeçalho da tabela com as colunas que você pediu
-        const thead = `
-            <thead>
-                <tr>
-                    <th>Nome da Empresa</th>
-                    <th>Endereço</th>
-                    <th>Telefone</th>
-                    <th>Site</th>
-                </tr>
-            </thead>
-        `;
-        table.innerHTML = thead;
-
-        // Corpo da tabela com os novos dados
-        const tbody = document.createElement('tbody');
-        leads.forEach(lead => {
-            const row = document.createElement('tr');
-            // Buscamos os campos 'phone' e 'website' que agora existem no banco
-            row.innerHTML = `
-                <td>${lead.company_name || 'N/A'}</td>
-                <td>${lead.address || 'N/A'}</td>
-                <td>${lead.phone || 'N/A'}</td>
-                <td>${lead.website ? `<a href="${lead.website}" target="_blank" rel="noopener noreferrer">${lead.website}</a>` : 'N/A'}</td>
-            `;
-            tbody.appendChild(row);
-        });
-        table.appendChild(tbody);
-        
-        leadsListDiv.appendChild(table);
-    };
-
-    // --- FUNÇÃO PARA BUSCAR OS LEADS DA API ---
-    const fetchLeads = async () => {
-        try {
-            const response = await fetch(`${API_URL}/api/leads`, {
-                method: 'GET',
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (!response.ok) throw new Error('Falha ao buscar leads.');
-            
-            const leads = await response.json();
-            renderLeads(leads); // Chama a função para exibir os leads na tela
-        } catch (error) {
-            console.error('Erro ao buscar leads:', error);
-            leadsListDiv.innerHTML = '<p style="color: red;">Erro ao carregar seus leads.</p>';
-        }
-    };
-
-    // --- LÓGICA PRINCIPAL ---
-    if (!token) {
-        window.location.href = 'login.html';
-        return;
-    }
-
-    fetch(`${API_URL}/api/perfil`, {
-        method: 'GET',
-        headers: { 'Authorization': `Bearer ${token}` }
-    })
-    .then(response => {
-        if (!response.ok) {
-            localStorage.removeItem('authToken');
-            window.location.href = 'login.html';
-            return Promise.reject('Token inválido');
-        }
-        return response.json();
-    })
-    .then(data => {
-        if (data && data.user) {
-            welcomeMessage.textContent = `Bem-vindo, ${data.user.email}!`;
-            fetchLeads(); // Depois de confirmar o login, busca os leads
-        }
-    })
-    .catch(error => {
-        if (error !== 'Token inválido') {
-           console.error('Erro ao buscar perfil:', error);
-        }
-    });
-
-    // Lógica do Logout
-    logoutButton.addEventListener('click', () => {
-        localStorage.removeItem('authToken');
-        alert('Você foi desconectado com sucesso.');
-        window.location.href = 'login.html';
-    });
+    // (O resto do seu código de fetch, logout e formulário continua aqui,
+    // mas trocando todos os `alert()` por `showNotification()`)
     
-    // Lógica do Formulário de Busca de Leads
-    leadSearchForm.addEventListener('submit', async (event) => {
-        event.preventDefault();
-        const businessType = document.getElementById('business-type').value;
-        const city = document.getElementById('city').value;
-        try {
-            const response = await fetch(`${API_URL}/api/leads/request`, {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token}`
-                },
-                body: JSON.stringify({ businessType, city })
-            });
-            const data = await response.json();
-            alert(data.message);
-            // Após um novo pedido, busca a lista de leads atualizada
-            if (response.ok) {
-                fetchLeads();
-            }
-        } catch (error) {
-            console.error('Erro de rede na busca de leads:', error);
-            alert('Não foi possível se conectar ao servidor. Tente novamente.');
-        }
-    });
+    // Exemplo de como trocar o alert no formulário de busca:
+    // ... dentro do `leadSearchForm.addEventListener` ...
+    // if (response.ok) {
+    //   showNotification(data.message); // ANTES: alert(data.message);
+    // } else {
+    //   showNotification(`Erro: ${data.message}`, 'error'); // ANTES: alert(`Erro: ${data.message}`);
+    // }
+
+    // (Cole o resto do seu código `dashboard.js` aqui, fazendo as trocas dos alerts)
+
+    // Finalmente, chama a função para criar os gráficos
+    createCharts();
 });
