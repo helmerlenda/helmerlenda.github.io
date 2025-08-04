@@ -5,12 +5,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LeadGen - Inteligência de Mercado para Prospecção B2B</title>
     <meta name="description" content="Transforme dados públicos em listas de prospecção B2B prontas para sua equipe comercial. Pare de procurar, comece a vender.">
-    
-    <link rel="stylesheet" href="style.css">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="landing-body">
 
@@ -18,13 +21,12 @@
         <nav class="container">
             <a href="#" class="nav-logo">
                 <img src="logo.png" alt="LeadGen Logo" class="logo-image-nav">
-                <span>LeadGen</span>
-            </a>
+         </a>
             <div class="nav-links">
                 <a href="#features">Funcionalidades</a>
                 <a href="#pricing">Preços</a>
                 <a href="login.html" class="button button-secondary">Entrar</a>
-                <a href="cadastro.html" class="button">Comece Grátis</a>
+                <a href="cadastro.html" class="button button-gradient">Começar Agora</a>
             </div>
         </nav>
     </header>
@@ -32,37 +34,36 @@
     <main>
         <section id="hero" class="hero-section">
             <div class="container hero-content">
-                <h1>Pare de Procurar. Comece a Vender.</h1>
-                <p class="subtitle">A LeadGen transforma milhões de dados públicos em listas de prospecção B2B ultra-segmentadas, prontas para sua equipe comercial. Encontre seus próximos clientes em minutos, não em meses.</p>
-                <a href="cadastro.html" class="button button-large">
+                <h1 data-aos="fade-up">Pare de Procurar. Comece a Vender.</h1>
+                <p class="subtitle" data-aos="fade-up" data-aos-delay="200">
+                    A LeadGen transforma milhões de dados públicos em listas de prospecção B2B ultra-segmentadas. Encontre seus próximos clientes em minutos, não em meses.
+                </p>
+                <a href="cadastro.html" class="button button-large button-gradient" data-aos="fade-up" data-aos-delay="400">
                     <i class="fas fa-rocket"></i>
-                    <span>Iniciar Teste Gratuito</span>
-                </a>
-                <div class="hero-image-container">
-                    <img src="https://images.unsplash.com/photo-1556740738-b6a63e27c4df?q=80&w=2070" alt="Dashboard da plataforma LeadGen" class="hero-image">
-                </div>
+                    <span>Gerar Leads Gratuitamente</span>
+             </a>
             </div>
         </section>
 
         <section id="features" class="features-section">
             <div class="container">
-                <h2 class="section-title">Inteligência de Mercado ao seu Alcance</h2>
-                <p class="section-subtitle">Nossa plataforma faz o trabalho pesado para que você possa focar no que importa: fechar negócios.</p>
+                <h2 class="section-title" data-aos="fade-up">Inteligência de Mercado ao Seu Alcance</h2>
+                <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">Nossa plataforma faz o trabalho pesado para que você possa focar no que importa: fechar negócios.</p>
                 <div class="features-grid">
-                    <div class="feature-card">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="200">
                         <i class="fas fa-bullseye"></i>
-                        <h3>Busca Ultra-Segmentada</h3>
-                        <p>Filtre empresas por nicho, cidade, estado e tamanho. Encontre exatamente quem você procura, onde quer que estejam.</p>
+                        <h3>Busca de Nicho</h3>
+                        <p>Filtre por atividade e localização. Encontre exatamente quem você procura, onde quer que estejam.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="300">
                         <i class="fas fa-bolt"></i>
-                        <h3>Enriquecimento Automático</h3>
-                        <p>Transformamos CNPJs brutos em perfis de empresa completos, com endereços, telefones, sites e muito mais, usando dados públicos atualizados.</p>
+                        <h3>Enriquecimento de Dados</h3>
+                        <p>Transformamos CNPJs brutos em perfis completos com contatos, endereços e insights valiosos.</p>
                     </div>
-                    <div class="feature-card">
+                    <div class="feature-card" data-aos="fade-up" data-aos-delay="400">
                         <i class="fas fa-download"></i>
                         <h3>Leads Prontos para Ação</h3>
-                        <p>Receba listas limpas e organizadas, prontas para serem importadas no seu CRM ou planilha. Prospecção nunca foi tão fácil.</p>
+                        <p>Receba listas limpas e organizadas, prontas para serem importadas no seu CRM ou planilha.</p>
                     </div>
                 </div>
             </div>
@@ -70,17 +71,16 @@
 
         <section id="pricing" class="pricing-section">
              <div class="container">
-                <h2 class="section-title">Um Plano Simples e Transparente</h2>
-                <p class="section-subtitle">Comece de graça e cresça conforme sua necessidade.</p>
-                <div class="pricing-card">
+                <h2 class="section-title" data-aos="fade-up">Comece a Usar. Grátis.</h2>
+                <div class="pricing-card" data-aos="fade-up" data-aos-delay="200">
                     <h3>Free Trial</h3>
                     <p class="price">R$0</p>
                     <ul>
                         <li><i class="fas fa-check-circle"></i> 1 Busca de Leads Gratuita</li>
                         <li><i class="fas fa-check-circle"></i> Até 20 Leads Enriquecidos</li>
-                        <li><i class="fas fa-check-circle"></i> Acesso à Plataforma</li>
+                        <li><i class="fas fa-check-circle"></i> Acesso Total à Plataforma</li>
                     </ul>
-                    <a href="cadastro.html" class="button">Começar Agora</a>
+                    <a href="cadastro.html" class="button button-gradient">Criar Minha Conta Grátis</a>
                 </div>
             </div>
         </section>
@@ -93,5 +93,12 @@
         </div>
     </footer>
 
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+      AOS.init({
+          duration: 700, // Duração da animação
+          once: true, // Anima apenas uma vez
+      });
+    </script>
 </body>
 </html>
