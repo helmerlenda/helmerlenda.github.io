@@ -725,3 +725,9 @@ body {
     width: fit-content; /* Faz o botão ter a largura do seu conteúdo */
     align-self: flex-start; /* Alinha o botão à esquerda */
 }
+/* Estilo para a nova logo */
+.logo-image {
+  max-width: 150px; /* Você pode ajustar este valor para o tamanho que preferir */
+  display: block;
+  margin: 0 auto 2.5rem auto; /* Centraliza a logo e adiciona espaço abaixo */
+}
