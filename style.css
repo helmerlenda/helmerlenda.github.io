@@ -634,3 +634,34 @@ body {
 .toast i {
     font-size: 1.2rem;
 }
+/* --- AJUSTES FINAIS DE IDENTIDADE VISUAL --- */
+
+/* 1. Define a nova fonte para os títulos */
+:root {
+    --font-display: 'Bebas Neue', sans-serif; /* Fonte de destaque para títulos */
+}
+
+/* 2. Aplica a fonte de destaque nos lugares certos */
+.logo,
+.main-dashboard-content h1,
+.main-dashboard-content h2,
+.stat-number {
+    font-family: var(--font-display);
+    letter-spacing: 1.5px; /* Bebas Neue fica ótima com um pouco mais de espaçamento */
+}
+
+/* 3. Ajusta o tamanho da fonte do card 'Plano Atual' para caber melhor */
+#plan-status {
+    font-size: 2rem;
+}
+
+/* 4. Aumenta o espaçamento do botão de busca */
+#lead-search-form .button {
+    margin-top: 1.5rem; /* Aumentamos o espaçamento de 1rem para 1.5rem */
+}
+
+/* 5. Refina a fonte dos labels dos formulários */
+.form-group label {
+    font-weight: 500;
+    color: var(--secondary-text);
+}
