@@ -3,24 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Meu SaaS</title>
+    <title>Dashboard - LeadGen SaaS</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
     <script src="dashboard.js" defer></script>
 </head>
-<body>
+<body class="dashboard-body">
 
-    <header class="hero">
-        <div class="container" style="display: flex; justify-content: space-between; align-items: center;">
-            <h1 id="welcome-message">Carregando...</h1>
-            <button id="logout-button" class="button">Logout</button>
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <h2 class="logo">LeadGen</h2>
         </div>
-    </header>
+        <nav class="sidebar-nav">
+            <a href="#" class="nav-link active">
+                <i class="fas fa-chart-line"></i>
+                <span>Dashboard</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-search"></i>
+                <span>Nova Busca</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-list-ul"></i>
+                <span>Meus Leads</span>
+            </a>
+            <a href="#" class="nav-link">
+                <i class="fas fa-cog"></i>
+                <span>Configurações</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer">
+            <button id="logout-button" class="logout-btn">
+                <i class="fas fa-sign-out-alt"></i>
+                <span>Sair</span>
+            </button>
+        </div>
+    </aside>
 
-    <main class="main-content">
-        <section id="dashboard-content" class="container">
-            <h2>Solicitar Novos Leads</h2>
-            <p class="contact-subtitle">Preencha os campos abaixo para iniciar uma nova busca.</p>
-            
+    <main class="main-dashboard-content">
+        <header class="dashboard-header">
+            <h1 id="welcome-message">Carregando...</h1>
+            <button class="button cta-button">
+                <i class="fas fa-plus"></i>
+                <span>Nova Busca de Leads</span>
+            </button>
+        </header>
+
+        <section class="stats-cards">
+            <div class="card">
+                <h3>Leads Gerados</h3>
+                <p class="stat-number" id="total-leads">0</p>
+                <span class="card-footer">Total de contatos enriquecidos</span>
+            </div>
+            <div class="card">
+                <h3>Buscas Realizadas</h3>
+                <p class="stat-number" id="total-searches">0</p>
+                <span class="card-footer">Neste ciclo de faturamento</span>
+            </div>
+            <div class="card">
+                <h3>Plano Atual</h3>
+                <p class="stat-number" id="plan-status">Free Trial</p>
+                <span class="card-footer">Faça upgrade para mais buscas</span>
+            </div>
+        </section>
+
+        <section id="lead-search-section" class="content-section">
+            <h2>Inicie uma Nova Prospecção</h2>
+            <p class="section-subtitle">Defina seus critérios para encontrar clientes em potencial.</p>
             <form id="lead-search-form">
                 <div class="form-group">
                     <label for="business-type">Tipo de Negócio:</label>
@@ -30,23 +79,20 @@
                     <label for="city">Cidade:</label>
                     <input type="text" id="city" name="city" required placeholder="Ex: São Paulo, Rio de Janeiro">
                 </div>
-                <button type="submit" class="button">Buscar Leads</button>
+                <button type="submit" class="button">
+                    <i class="fas fa-search"></i>
+                    <span>Buscar Leads</span>
+                </button>
             </form>
         </section>
         
-        <section id="results-section" class="container">
-            <h2>Leads Gerados</h2>
+        <section id="results-section" class="content-section">
+            <h2>Últimos Leads Gerados</h2>
             <div id="leads-list">
                 <p>Nenhum lead gerado ainda. Preencha o formulário acima para começar.</p>
             </div>
         </section>
     </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 [Seu Nome]. Todos os direitos reservados.</p>
-        </div>
-    </footer>
 
 </body>
 </html>
