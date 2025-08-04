@@ -49,3 +49,19 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 });
+// --- LÓGICA DO MENU MOBILE (HAMBÚRGUER) ---
+
+const navLinks = document.querySelector('.nav-links');
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+
+mobileNavToggle.addEventListener('click', () => {
+    const isVisible = navLinks.getAttribute('data-visible');
+
+    if (isVisible === "false" || isVisible === null) {
+        navLinks.setAttribute('data-visible', true);
+        mobileNavToggle.setAttribute('aria-expanded', true);
+    } else {
+        navLinks.setAttribute('data-visible', false);
+        mobileNavToggle.setAttribute('aria-expanded', false);
+    }
+});
