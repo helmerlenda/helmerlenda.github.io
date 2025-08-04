@@ -1,812 +1,59 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-/* --- Variáveis de Cores e Fontes --- */
-:root {
-    --primary-color: #0D9488; /* Verde-azulado (teal) para destaque */
-    --primary-hover: #0F766E;
-    --dark-bg: #111827;       /* Fundo principal escuro (quase preto) */
-    --dark-card: #1F2937;     /* Fundo dos cards e formulários */
-    --light-text: #F9FAFB;    /* Cor principal do texto */
-    --secondary-text: #9CA3AF;/* Cor para textos secundários e placeholders */
-    --border-color: #374151;
+/* --- FONTES --- */
+@import url('https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap');
 
-    --font-heading: 'Poppins', sans-serif;
-    --font-body: 'Roboto', sans-serif;
+/* --- VARIÁVEIS DE CORES E FONTES --- */
+:root {
+    --dark-bg: #111827;
+    --dark-card: #1F2937;
+    --border-color: #374151;
+    --primary-color: #3B82F6;
+    --primary-hover: #2563EB;
+    --success-color: #10B981;
+    --light-text: #F9FAFB;
+    --secondary-text: #9CA3AF;
+    --font-sans: 'Inter', sans-serif;
+    --font-display: 'Bebas Neue', sans-serif;
+    --brand-gradient: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%);
+    --brand-gradient-hover: linear-gradient(90deg, #2563EB 0%, #7C3AED 100%);
 }
 
-/* --- Reset e Estilos Globais --- */
+/* --- RESET E ESTILOS GLOBAIS --- */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 html {
     scroll-behavior: smooth;
 }
-
 body {
     background-color: var(--dark-bg);
     color: var(--light-text);
-    font-family: var(--font-body);
-    line-height: 1.6;
-}
-
-.container {
-    width: 90%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 4rem 0;
-}
-
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    color: var(--light-text);
-}
-
-h1 {
-    font-size: 3rem;
-    margin-bottom: 0.5rem;
-}
-
-h2 {
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    position: relative;
-}
-
-/* Linha sutil abaixo do título da seção */
-h2::after {
-    content: '';
-    position: absolute;
-    bottom: -10px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 80px;
-    height: 3px;
-    background-color: var(--primary-color);
-}
-
-p {
-    color: var(--secondary-text);
-    margin-bottom: 1rem;
-}
-
-a {
-    color: var(--primary-color);
-    text-decoration: none;
-    transition: color 0.3s ease;
-}
-
-a:hover {
-    color: var(--primary-hover);
-}
-
-/* --- Cabeçalho (Hero) --- */
-.hero {
-    background-color: var(--dark-bg);
-    padding: 4rem 0;
-    border-bottom: 1px solid var(--border-color);
-}
-
-.intro-content {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.profile-photo {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid var(--primary-color);
-    object-fit: cover;
-}
-
-.intro-text p {
-    font-size: 1.1rem;
-    max-width: 600px;
-}
-
-/* --- Seção de Projetos --- */
-.projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-    gap: 2rem;
-}
-
-.project-card {
-    background-color: var(--dark-card);
-    border-radius: 8px;
-    overflow: hidden;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    border: 1px solid var(--border-color);
-}
-
-.project-card:hover {
-    transform: translateY(-10px);
-    box-shadow: 0 8px 20px rgba(13, 148, 136, 0.2);
-}
-
-.project-card img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-.project-info {
-    padding: 1.5rem;
-}
-
-.project-info h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-}
-
-/* --- Seção de Contato --- */
-#contact .container {
-    max-width: 800px;
-}
-
-.contact-subtitle {
-    text-align: center;
-    margin-top: -2rem;
-    margin-bottom: 2rem;
-    font-size: 1.1rem;
-}
-
-#contact-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-}
-
-.form-group {
-    display: flex;
-    flex-direction: column;
-}
-
-.form-group label {
-    font-family: var(--font-heading);
-    font-weight: 500;
-    margin-bottom: 0.5rem;
-}
-
-.form-group input,
-.form-group textarea {
-    background-color: var(--dark-bg);
-    border: 1px solid var(--border-color);
-    border-radius: 5px;
-    padding: 0.8rem 1rem;
-    color: var(--light-text);
-    font-family: var(--font-body);
-    font-size: 1rem;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
-}
-
-.form-group input::placeholder,
-.form-group textarea::placeholder {
-    color: var(--secondary-text);
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-    outline: none;
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.3);
-}
-
-.button {
-    background-color: var(--primary-color);
-    color: #fff;
-    padding: 1rem;
-    border: none;
-    border-radius: 5px;
-    font-family: var(--font-heading);
-    font-size: 1.1rem;
-    font-weight: 500;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    align-self: flex-start;
-}
-
-.button:hover {
-    background-color: var(--primary-hover);
-}
-
-.social-links {
-    text-align: center;
-    margin-top: 3rem;
-}
-
-.social-links a {
-    margin: 0 1rem;
-    font-size: 1.1rem;
-    font-weight: 500;
-}
-
-/* --- Rodapé --- */
-footer {
-    text-align: center;
-    padding: 2rem 0;
-    border-top: 1px solid var(--border-color);
-    background-color: var(--dark-card);
-}
-
-footer .container {
-    padding: 0;
-}
-
-/* --- Responsividade para Telas Menores --- */
-@media (max-width: 768px) {
-    h1 {
-        font-size: 2.5rem;
-    }
-    
-    h2 {
-        font-size: 2rem;
-    }
-
-    .intro-content {
-        flex-direction: column;
-        text-align: center;
-    }
-}
-/* --- Estilos para a Tabela de Leads --- */
-
-.leads-table {
-  width: 100%; /* Faz a tabela usar toda a largura disponível */
-  border-collapse: collapse; /* Deixa as bordas limpas e únicas */
-  margin-top: 2rem; /* Adiciona um espaço acima da tabela */
-  text-align: left; /* Alinha o texto à esquerda */
-}
-
-.leads-table th,
-.leads-table td {
-  /* ESTA É A PARTE MAIS IMPORTANTE */
-  padding: 12px 15px; /* Adiciona o "respiro" (espaçamento interno) nas células */
-  border-bottom: 1px solid var(--border-color); /* Cria uma linha separadora */
-}
-
-.leads-table th {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  color: var(--light-text);
-}
-
-.leads-table tbody tr:hover {
-  background-color: var(--dark-card); /* Efeito visual ao passar o mouse */
-}
-
-.leads-table a {
-  text-decoration: underline;
-}
-/* --- ESTILOS DO NOVO DASHBOARD --- */
-
-/* Layout Principal */
-.dashboard-body {
-    display: flex;
-    background-color: var(--dark-bg); /* Reutiliza a cor que já tínhamos */
-}
-
-.sidebar {
-    width: 250px;
-    background-color: var(--dark-card);
-    padding: 1.5rem;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    position: fixed;
-    border-right: 1px solid var(--border-color);
-}
-
-.main-dashboard-content {
-    flex-grow: 1;
-    padding: 2rem 3rem;
-    margin-left: 250px; /* Ocupa o espaço depois da sidebar */
-}
-
-/* Barra Lateral (Sidebar) */
-.sidebar-header .logo {
-    text-align: center;
-    font-size: 1.8rem;
-    margin-bottom: 2.5rem;
-    color: var(--light-text);
-}
-
-.sidebar-nav {
-    display: flex;
-    flex-direction: column;
-    gap: 0.8rem;
-}
-
-.nav-link {
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    padding: 0.8rem 1rem;
-    border-radius: 6px;
-    font-size: 1rem;
-    font-weight: 500;
-    color: var(--secondary-text);
-    transition: background-color 0.2s ease, color 0.2s ease;
-}
-
-.nav-link:hover, .nav-link.active {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-.nav-link i {
-    width: 20px;
-    text-align: center;
-}
-
-.sidebar-footer {
-    margin-top: auto; /* Empurra o footer para o final */
-}
-
-.logout-btn {
-    width: 100%;
-    background: none;
-    border: none;
-    cursor: pointer;
-    text-align: left;
-}
-
-
-/* Conteúdo Principal */
-.dashboard-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 2rem;
-}
-
-.dashboard-header h1 {
-    font-size: 2rem;
-}
-
-.cta-button {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-/* Cards de Estatísticas */
-.stats-cards {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 1.5rem;
-    margin-bottom: 3rem;
-}
-
-.card {
-    background-color: var(--dark-card);
-    padding: 1.5rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.card h3 {
-    font-size: 1rem;
-    color: var(--secondary-text);
-    margin-bottom: 0.5rem;
-}
-
-.stat-number {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: var(--light-text);
-    margin: 0;
-}
-
-.card-footer {
-    font-size: 0.85rem;
-    color: var(--secondary-text);
-}
-
-
-/* Seções de Conteúdo */
-.content-section {
-    background-color: var(--dark-card);
-    padding: 2rem;
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-    margin-bottom: 2rem;
-}
-
-.content-section h2 {
-    text-align: left;
-    margin-bottom: 0.5rem;
-}
-.content-section h2::after {
-    display: none; /* Remove a linha centralizada antiga */
-}
-
-.section-subtitle {
-    margin-bottom: 1.5rem;
-    color: var(--secondary-text);
-}
-/* --- REFINAMENTOS DE DESIGN PROFISSIONAL --- */
-
-/* 1. Nova Fonte e Cores de Base */
-:root {
-    --dark-bg: #111827;
-    --dark-card: #1F2937;
-    --border-color: #374151;
-    --primary-color: #3B82F6; /* Um azul mais vibrante */
-    --primary-hover: #2563EB;
-    --light-text: #F9FAFB;
-    --secondary-text: #9CA3AF;
-    --font-sans: 'Inter', sans-serif; /* Nossa nova fonte */
-}
-
-body {
     font-family: var(--font-sans);
-    -webkit-font-smoothing: antialiased; /* Deixa a fonte mais nítida */
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
-
-/* 2. Ajustes de Tipografia e Hierarquia */
-.main-dashboard-content h1 {
-    font-weight: 600;
-    font-size: 1.8rem;
-    color: var(--light-text);
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
 }
-
-.main-dashboard-content h2 {
-    font-weight: 600;
-    font-size: 1.25rem;
-    border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.8rem;
-    margin-bottom: 1.5rem;
-}
-
-.section-subtitle, .card-footer {
-    font-size: 0.875rem;
-    color: var(--secondary-text);
-}
-
-
-/* 3. Refinamento dos Cards de Estatísticas */
-.card {
-    padding: 1.5rem;
-    border-radius: 12px; /* Cantos mais arredondados */
-    box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
-    transition: transform 0.2s ease;
-}
-
-.card:hover {
-    transform: translateY(-4px);
-}
-
-.stat-number {
-    font-size: 2.25rem;
-    font-weight: 700;
-    letter-spacing: -1px;
-}
-
-
-/* 4. Refinamento dos Formulários e Botões */
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-    background-color: #374151; /* Fundo um pouco mais claro */
-    border: 1px solid var(--border-color);
-    padding: 12px;
-    font-size: 1rem;
-    border-radius: 8px; /* Cantos mais arredondados */
-}
-
-.form-group input:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
-}
-
 .button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     font-weight: 600;
-    padding: 12px 20px;
-    border-radius: 8px;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    transition: background-color 0.2s ease;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    border: none;
+    text-decoration: none;
 }
 
-
-/* 5. Refinamento da Barra Lateral (Sidebar) */
-.sidebar {
-    width: 260px;
-    background-color: #111827; /* Fundo mais escuro que os cards */
-}
-
-.sidebar-header .logo {
-    font-weight: 700;
-}
-
-.nav-link {
-    font-weight: 500;
-}
-
-.nav-link.active, .nav-link:hover {
-    background-color: var(--primary-color);
-    color: white;
-}
-
-/* 6. Refinamento da Tabela de Leads */
-.leads-table {
-    margin-top: 1.5rem;
-    border-spacing: 0;
-}
-
-.leads-table th {
-    color: var(--secondary-text);
-    text-transform: uppercase;
-    font-size: 0.75rem;
-    letter-spacing: 1px;
-    padding: 1rem;
-}
-
-.leads-table td {
-    padding: 1rem;
-    color: var(--light-text);
-    background-color: #1F2937; /* Cor de fundo das linhas */
-}
-
-/* Intercala as cores das linhas para melhor leitura */
-.leads-table tbody tr:nth-child(even) td {
-    background-color: #253141; 
-}
-
-.leads-table tbody tr {
-    transition: background-color 0.2s ease;
-}
-
-.leads-table tbody tr:hover td {
-    background-color: var(--primary-color);
-}
-
-.leads-table td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
-.leads-table td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
-
-.leads-table tr td {
-    border-bottom: 5px solid #111827; /* Espaçamento entre as linhas */
-}
-
-.leads-table thead {
-    display: none; /* Esconde o cabeçalho antigo, pois os novos cards são mais visuais */
-}
-/* --- PASSO FINAL: POLIMENTO PROFISSIONAL --- */
-
-/* 1. Nova Cor de Destaque */
-:root {
-    --success-color: #10B981; /* Verde para sucesso e dados positivos */
-}
-
-/* 2. Espaçamento do Botão do Formulário */
-#lead-search-form .button {
-    margin-top: 1rem; /* Adiciona o espaço que você pediu */
-}
-
-/* 3. Estilos para as Notificações Profissionais ("Toasts") */
-#notification-container {
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    z-index: 1000;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.toast {
-    padding: 15px 20px;
-    border-radius: 8px;
-    color: white;
-    font-weight: 500;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    opacity: 0;
-    transform: translateX(100%);
-    animation: slideIn 0.5s forwards;
-}
-
-@keyframes slideIn {
-    to {
-        opacity: 1;
-        transform: translateX(0);
-    }
-}
-
-.toast.success {
-    background-color: var(--success-color);
-}
-
-.toast.error {
-    background-color: #EF4444; /* Vermelho para erros */
-}
-
-.toast i {
-    font-size: 1.2rem;
-}
-/* --- AJUSTES FINAIS DE IDENTIDADE VISUAL --- */
-
-/* 1. Define a nova fonte para os títulos */
-:root {
-    --font-display: 'Bebas Neue', sans-serif; /* Fonte de destaque para títulos */
-}
-
-/* 2. Aplica a fonte de destaque nos lugares certos */
-.logo,
-.main-dashboard-content h1,
-.main-dashboard-content h2,
-.stat-number {
-    font-family: var(--font-display);
-    letter-spacing: 1.5px; /* Bebas Neue fica ótima com um pouco mais de espaçamento */
-}
-
-/* 3. Ajusta o tamanho da fonte do card 'Plano Atual' para caber melhor */
-#plan-status {
-    font-size: 2rem;
-}
-
-/* 4. Aumenta o espaçamento do botão de busca */
-#lead-search-form .button {
-    margin-top: 1.5rem; /* Aumentamos o espaçamento de 1rem para 1.5rem */
-}
-
-/* 5. Refina a fonte dos labels dos formulários */
-.form-group label {
-    font-weight: 500;
+/* --- ESTILOS DA LANDING PAGE (index.html) --- */
+.landing-body {
     color: var(--secondary-text);
 }
-/* --- AJUSTE FINO DE TAMANHO DOS TÍTULOS --- */
-
-/* Título principal do Dashboard (Bem-vindo...) */
-.main-dashboard-content h1 {
-    font-size: 2.1rem; /* Antes era 1.8rem */
-}
-
-/* Títulos das seções (Inicie uma nova prospecção, etc) */
-.main-dashboard-content h2 {
-    font-size: 1.35rem; /* Antes era 1.25rem */
-}
-
-/* Números grandes dos cards */
-.stat-number {
-    font-size: 2.5rem; /* Antes era 2.25rem */
-}
-
-/* Ajuste específico para o card de plano, para não quebrar a linha */
-#plan-status {
-    font-size: 2.2rem; /* Antes era 2rem */
-}
-/* --- REFINAMENTOS FINAIS DO FORMULÁRIO DE BUSCA --- */
-
-/* 1. Melhora o espaçamento geral do formulário */
-#lead-search-form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem; /* Aumenta o espaço entre os grupos de label/input */
-}
-
-/* 2. Estiliza os Labels (Tipo de Negócio, Cidade) */
-.form-group label {
-    font-size: 0.875rem; /* Tamanho de letra um pouco menor */
-    font-weight: 500;
-    color: var(--secondary-text); /* Cor mais sutil */
-    display: block; /* Garante que o espaçamento abaixo funcione */
-    margin-bottom: 0.5rem; /* Adiciona um pequeno espaço entre o label e o campo */
-}
-
-/* 3. Estiliza os campos de texto (Inputs) */
-.form-group input[type="text"],
-.form-group input[type="email"],
-.form-group input[type="password"] {
-    font-size: 1rem;
-    padding: 14px 16px; /* Aumenta o padding interno para um look mais moderno */
-    background-color: var(--dark-bg); /* Fundo mais escuro para contraste */
-    border: 1px solid var(--border-color);
-}
-
-.form-group input::placeholder {
-    color: #4B5563; /* Torna o placeholder um pouco mais sutil */
-}
-
-/* 4. Ajusta o botão de busca */
-#lead-search-form .button {
-    margin-top: 1rem; /* Garante um bom espaçamento final */
-    padding: 14px 24px; /* Deixa o botão um pouco maior */
-    width: fit-content; /* Faz o botão ter a largura do seu conteúdo */
-    align-self: flex-start; /* Alinha o botão à esquerda */
-}
-/* Estilo para a nova logo */
-.logo-image {
-  max-width: 150px; /* Você pode ajustar este valor para o tamanho que preferir */
-  display: block;
-  margin: 0 auto 2.5rem auto; /* Centraliza a logo e adiciona espaço abaixo */
-}
-/* --- RESPONSIVIDADE PARA O DASHBOARD (MOBILE) --- */
-
-/* --- RESPONSIVIDADE PARA O DASHBOARD (MOBILE) --- */
-@media (max-width: 768px) {
-       .sidebar {
-        display: none;
-    }
-
-  .main-dashboard-content {
-        margin-left: 0;
-        padding: 1rem;
-    }
-
-    .dashboard-header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1rem;
-    }
-
-    .dashboard-header h1 {
-        font-size: 1.8rem;
-    }
-
-    .stats-cards {
-        grid-template-columns: 1fr; /* Um card por linha no celular */
-    }
-
-    /* --- Tabela Responsiva (Versão Correta) --- */
-    .leads-table {
-        display: block;
-        width: 100%;
-    }
-    
-    .leads-table thead {
-        /* O cabeçalho da tabela tradicional é escondido no mobile */
-        display: none;
-    }
-    
-    .leads-table tr {
-        display: block;
-        margin-bottom: 1rem;
-        border: 1px solid var(--border-color);
-        border-radius: 8px;
-        padding: 1rem;
-        background-color: #253141 !important; /* Cor de fundo para o "card" */
-    }
-    
-    .leads-table td {
-        display: flex;
-        justify-content: space-between; /* Alinha o título e o valor */
-        text-align: right;
-        padding: 0.75rem 0;
-        border-bottom: 1px solid var(--border-color);
-    }
-    
-    .leads-table td:last-child {
-        border-bottom: none; /* Remove a borda do último item */
-    }
-    
-    /* A mágica acontece aqui: adicionamos o título da coluna antes do dado */
-    .leads-table td::before {
-        content: attr(data-label); /* Pega o texto do atributo 'data-label' */
-        font-weight: 500;
-        color: var(--secondary-text);
-        text-align: left;
-        padding-right: 1rem;
-    }
-}
-/* --- ESTILO FINAL E PROFISSIONAL DA LANDING PAGE (OTIMIZADO) --- */
-
-:root {
-    --brand-gradient: linear-gradient(90deg, #3B82F6 0%, #8B5CF6 100%);
-    --brand-gradient-hover: linear-gradient(90deg, #2563EB 0%, #7C3AED 100%);
-}
-
-/* Header e Navegação */
 .landing-header {
     padding: 1rem 0;
     border-bottom: 1px solid var(--border-color);
@@ -815,7 +62,6 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0; /* Container já tem padding */
 }
 .nav-logo {
     display: flex;
@@ -823,7 +69,7 @@ body {
     text-decoration: none;
 }
 .nav-logo img {
-    max-height: 50px; /* Logo um pouco maior */
+    max-height: 50px;
 }
 .nav-links {
     display: flex;
@@ -849,19 +95,15 @@ body {
 }
 .button.button-gradient {
     background: var(--brand-gradient);
-    border: none;
     color: white;
-    font-weight: 600;
-    transition: all 0.3s ease;
 }
 .button.button-gradient:hover {
+    background: var(--brand-gradient-hover);
     transform: translateY(-2px);
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
 }
-
-/* Seção Hero */
 .hero-section {
-    padding: 4.5rem 0; /* Espaçamento ajustado */
+    padding: 4.5rem 0;
     position: relative;
     overflow: hidden;
     text-align: center;
@@ -869,9 +111,7 @@ body {
 .hero-section::before {
     content: '';
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
+    top: 0; left: 0; right: 0;
     height: 600px;
     background: radial-gradient(ellipse at top, rgba(59, 130, 246, 0.1), transparent 60%);
     z-index: 0;
@@ -881,7 +121,7 @@ body {
     z-index: 1;
 }
 .hero-content h1 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 4.2rem;
     letter-spacing: 1px;
     color: var(--light-text);
@@ -890,22 +130,19 @@ body {
 .hero-content .subtitle {
     font-size: 1.1rem;
     max-width: 700px;
-    margin: 0 auto 2rem auto; /* Espaçamento inferior ajustado */
+    margin: 0 auto 2rem auto;
     line-height: 1.7;
-    color: var(--secondary-text);
 }
 .button.button-large {
     padding: 0.9rem 2.2rem;
     font-size: 1rem;
 }
-
-/* Seções Gerais */
 .features-section, .pricing-section {
-    padding: 4.5rem 0; /* Espaçamento ajustado */
+    padding: 4.5rem 0;
     text-align: center;
 }
 .section-title {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     font-size: 2.8rem;
     letter-spacing: 0.5px;
     color: var(--light-text);
@@ -913,11 +150,8 @@ body {
 }
 .section-subtitle {
     max-width: 650px;
-    margin: 0 auto 2.5rem auto; /* Espaçamento inferior ajustado */
-    color: var(--secondary-text);
+    margin: 0 auto 2.5rem auto;
 }
-
-/* Cards de Funcionalidades */
 .features-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -936,18 +170,15 @@ body {
     margin-bottom: 1.5rem;
 }
 .feature-card h3 {
-    font-family: 'Bebas Neue', sans-serif;
+    font-family: var(--font-display);
     color: var(--light-text);
     font-size: 1.4rem;
     margin-bottom: 0.5rem;
 }
 .feature-card p {
     font-size: 0.95rem;
-    color: var(--secondary-text);
     line-height: 1.6;
 }
-
-/* Card de Preços */
 .pricing-card {
     max-width: 380px;
     margin: 0 auto;
@@ -956,16 +187,12 @@ body {
     border-radius: 12px;
     border: 1px solid var(--primary-color);
 }
-.pricing-card h3 { font-family: 'Bebas Neue', sans-serif; font-size: 1.6rem; color: var(--light-text); }
-.pricing-card .price { font-family: 'Bebas Neue', sans-serif; font-size: 3rem; color: var(--light-text); margin: 1rem 0; }
+.pricing-card h3 { font-family: var(--font-display); font-size: 1.6rem; color: var(--light-text); }
+.pricing-card .price { font-family: var(--font-display); font-size: 3rem; color: var(--light-text); margin: 1rem 0; }
 .pricing-card ul { list-style: none; margin: 2rem 0; text-align: left; font-size: 1rem; }
 .pricing-card ul li { margin-bottom: 1rem; display: flex; align-items: center; gap: 0.8rem; }
 .pricing-card ul li i { color: var(--success-color); }
-.pricing-card .button-gradient {
-    width: 100%;
-}
-
-/* Rodapé */
+.pricing-card .button-gradient { width: 100%; }
 .landing-footer {
     padding: 3.5rem 0;
     text-align: center;
@@ -976,39 +203,25 @@ body {
     margin-bottom: 1rem;
 }
 
-/* Responsividade Ajustada */
-@media (max-width: 768px) {
-    .landing-header nav { flex-direction: column; gap: 1rem; }
-    .hero-content h1 { font-size: 3.2rem; }
-    .hero-content .subtitle { font-size: 1rem; }
-    .features-section, .pricing-section, .hero-section { padding: 3.5rem 1rem; }
-    .section-title { font-size: 2.5rem; }
-}
-/* --- ESTILOS CORRIGIDOS DAS PÁGINAS DE AUTENTICAÇÃO --- */
-
+/* --- ESTILOS DAS PÁGINAS DE AUTENTICAÇÃO (login.html, cadastro.html) --- */
 .auth-body {
-    background-color: var(--dark-bg);
-    height: 100vh; /* Garante que o body ocupe a tela toda */
+    height: 100vh;
     margin: 0;
-    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+    overflow: hidden;
 }
-
 .auth-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
-    height: 100%; /* Ocupa a altura total do body */
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
     width: 100%;
 }
-
-/* Coluna da Esquerda (Branding) */
 .auth-brand-column {
     background-color: var(--dark-card);
     padding: 3rem;
-    display: flex; /* Ativa o Flexbox */
-    flex-direction: column; /* Organiza os itens em uma coluna */
-    justify-content: space-between; /* ESTA É A MÁGICA: empurra o primeiro item para o topo e o último para baixo */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
-
 .brand-text h2 {
     font-family: var(--font-display);
     font-size: 2.8rem;
@@ -1016,26 +229,20 @@ body {
     line-height: 1.2;
     margin-bottom: 1rem;
 }
-
 .brand-text p {
     font-size: 1.1rem;
     max-width: 420px;
-    color: var(--secondary-text);
 }
-
-/* Coluna da Direita (Formulário) */
 .auth-form-column {
-    display: flex; /* Ativa o Flexbox */
-    justify-content: center; /* Centraliza horizontalmente */
-    align-items: center; /* ESTA É A MÁGICA: Centraliza verticalmente */
+    display: flex;
+    justify-content: center;
+    align-items: center;
     padding: 2rem;
 }
-
 .form-wrapper {
     width: 100%;
     max-width: 400px;
 }
-
 .form-wrapper h2 {
     font-family: var(--font-display);
     font-size: 2.5rem;
@@ -1044,102 +251,262 @@ body {
     text-align: left;
     border: none;
 }
-
 .form-wrapper .form-subtitle {
-    color: var(--secondary-text);
     margin-bottom: 2rem;
 }
-
-#login-form .button,
-#register-form .button {
+#login-form .button, #register-form .button {
     width: 100%;
     padding: 14px;
     margin-top: 1rem;
 }
-
 .auth-switch-link {
     text-align: center;
     margin-top: 1.5rem;
     font-size: 0.9rem;
 }
-
 .auth-switch-link a {
     color: var(--primary-color);
     font-weight: 500;
 }
 
-/* Responsividade Corrigida */
+/* --- ESTILOS DO DASHBOARD (dashboard.html) --- */
+.dashboard-body {
+    display: flex;
+}
+.sidebar {
+    width: 250px;
+    background-color: var(--dark-card);
+    padding: 1.5rem;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    border-right: 1px solid var(--border-color);
+}
+.main-dashboard-content {
+    flex-grow: 1;
+    padding: 2rem 3rem;
+    margin-left: 250px;
+}
+.sidebar-header .logo-image {
+    max-width: 150px;
+    display: block;
+    margin: 0 auto 2.5rem auto;
+}
+.sidebar-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+.nav-link {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    border-radius: 6px;
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+.nav-link:hover, .nav-link.active {
+    background-color: var(--primary-color);
+    color: white;
+}
+.nav-link i { width: 20px; text-align: center; }
+.sidebar-footer { margin-top: auto; }
+.logout-btn {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+}
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+.dashboard-header h1 {
+    font-family: var(--font-display);
+    font-size: 2.1rem;
+    letter-spacing: 1.5px;
+}
+.cta-button {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+.stats-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+    margin-bottom: 3rem;
+}
+.card {
+    background-color: #253141; /* Cor um pouco diferente para os cards */
+    padding: 1.5rem;
+    border-radius: 12px;
+    border: 1px solid var(--border-color);
+    transition: transform 0.2s ease;
+}
+.card:hover {
+    transform: translateY(-4px);
+}
+.card h3 {
+    font-size: 1rem;
+    color: var(--secondary-text);
+    margin-bottom: 0.5rem;
+}
+.stat-number {
+    font-family: var(--font-display);
+    letter-spacing: -1px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--light-text);
+    margin: 0;
+}
+#plan-status { font-size: 2.2rem; }
+.card-footer {
+    font-size: 0.85rem;
+}
+.content-section {
+    background-color: var(--dark-card);
+    padding: 2rem;
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+    margin-bottom: 2rem;
+}
+.content-section h2 {
+    font-family: var(--font-display);
+    font-size: 1.4rem;
+    letter-spacing: 1.5px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.8rem;
+    margin-bottom: 1.5rem;
+}
+.content-section h2::after { display: none; }
+#lead-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+.form-group label {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--secondary-text);
+    display: block;
+    margin-bottom: 0.5rem;
+}
+.form-group input[type="text"], .form-group input[type="email"], .form-group input[type="password"] {
+    font-size: 1rem;
+    padding: 14px 16px;
+    background-color: var(--dark-bg);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    width: 100%;
+    color: var(--light-text);
+}
+.form-group input::placeholder { color: #4B5563; }
+.form-group input:focus {
+    outline: none;
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+#lead-search-form .button {
+    margin-top: 1rem;
+    padding: 14px 24px;
+    width: fit-content;
+    align-self: flex-start;
+}
+.leads-table {
+    width: 100%;
+    margin-top: 1.5rem;
+    border-collapse: separate;
+    border-spacing: 0 10px;
+}
+.leads-table th {
+    color: var(--secondary-text);
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 1px;
+    padding: 1rem;
+    text-align: left;
+}
+.leads-table td {
+    padding: 1rem;
+    color: var(--light-text);
+    background-color: #253141;
+}
+.leads-table tbody tr:hover td {
+    background-color: #374151;
+}
+.leads-table td:first-child { border-top-left-radius: 8px; border-bottom-left-radius: 8px; }
+.leads-table td:last-child { border-top-right-radius: 8px; border-bottom-right-radius: 8px; }
+.leads-table thead tr {
+    display: table-row; /* Garante que o cabeçalho seja uma linha */
+}
+.leads-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+.leads-table a { color: var(--primary-color); text-decoration: underline; }
+
+/* --- NOTIFICAÇÕES ("TOASTS") --- */
+#notification-container {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.toast {
+    padding: 15px 20px;
+    border-radius: 8px;
+    color: white;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    opacity: 0;
+    transform: translateX(100%);
+    animation: slideIn 0.5s forwards;
+}
+@keyframes slideIn {
+    to { opacity: 1; transform: translateX(0); }
+}
+.toast.success { background-color: var(--success-color); }
+.toast.error { background-color: #EF4444; }
+.toast i { font-size: 1.2rem; }
+
+/* --- RESPONSIVIDADE --- */
 @media (max-width: 900px) {
-    .auth-container {
-        grid-template-columns: 1fr; /* Uma coluna só */
-    }
-    .auth-brand-column {
-        display: none; /* Esconde a coluna da marca no mobile para focar no formulário */
-    }
-    .auth-form-column {
-        justify-content: flex-start; /* Alinha ao topo em telas menores */
-        padding-top: 5rem;
-    }
+    .auth-container { grid-template-columns: 1fr; }
+    .auth-brand-column { display: none; }
+    .auth-form-column { justify-content: flex-start; padding-top: 5rem; }
 }
-
-/* Responsividade para as telas de autenticação */
-@media (max-width: 850px) {
-    .auth-container {
-        grid-template-columns: 1fr; /* Uma coluna só no mobile */
-    }
-    .auth-brand-column {
-        display: none; /* Esconde a coluna da marca no mobile para focar no formulário */
-    }
-    .auth-form-column {
-        align-items: flex-start;
-        padding-top: 4rem;
-    }
-}
-/* --- AJUSTES FINAIS DE RESPONSIVIDADE (MOBILE) --- */
-
-/* 1. Melhora a apresentação da tabela de leads no mobile */
 @media (max-width: 768px) {
-    .leads-table td {
-        /* Garante que o texto tenha espaço para respirar e o valor se alinhe bem */
-        flex-basis: 100%; /* Faz cada célula ocupar a linha inteira no modo "card" */
-        justify-content: flex-start; /* Alinha o label e o valor à esquerda */
-        text-align: left;
-    }
+    .landing-header nav { flex-direction: column; gap: 1rem; }
+    .nav-links { flex-wrap: wrap; justify-content: center; }
+    .hero-content h1 { font-size: 3rem; }
+    .hero-content .subtitle { font-size: 1rem; }
+    .features-section, .pricing-section, .hero-section { padding: 4rem 1rem; }
+    .section-title { font-size: 2.5rem; }
 
-    .leads-table td::before {
-        /* Garante que o "label" não seja muito largo */
-        flex-shrink: 0;
-        width: 120px; /* Largura fixa para os labels, alinhando os valores */
-    }
-}
-
-/* 2. Conserta o cabeçalho da página inicial em telas pequenas */
-@media (max-width: 768px) {
-    .landing-header nav {
-        /* Permite que o logo fique de um lado e os links do outro */
-        flex-direction: row;
-        flex-wrap: wrap; /* Permite que os links quebrem a linha se necessário */
-    }
-
-    .nav-links {
-        /* Ocupa toda a largura abaixo do logo quando quebrar a linha */
-        flex-basis: 100%;
-        justify-content: center;
-        gap: 0.5rem; /* Diminui o espaço entre os links */
-        margin-top: 1rem; /* Adiciona espaço se quebrar a linha */
-    }
-}
-
-/* Ajuste para telas muito estreitas */
-@media (max-width: 480px) {
-    .nav-links {
-        /* Força os botões a ficarem um embaixo do outro */
-        flex-direction: column;
-        align-items: stretch; /* Faz os botões ocuparem a largura total */
-    }
-
-    .nav-links a.button {
-        text-align: center;
-        justify-content: center;
-    }
+    .sidebar { display: none; }
+    .main-dashboard-content { margin-left: 0; padding: 1rem; }
+    .dashboard-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
+    .dashboard-header h1 { font-size: 1.8rem; }
+    .stats-cards { grid-template-columns: 1fr; }
+    
+    .leads-table { display: block; width: 100%; }
+    .leads-table thead { display: none; }
+    .leads-table tr { display: block; margin-bottom: 1rem; border: 1px solid var(--border-color); border-radius: 8px; padding: 1rem; }
+    .leads-table td { display: flex; justify-content: space-between; text-align: right; padding: 0.75rem 0; border-bottom: 1px solid var(--border-color); background-color: transparent !important; }
+    .leads-table td:last-child { border-bottom: none; }
+    .leads-table td::before { content: attr(data-label); font-weight: 500; color: var(--secondary-text); text-align: left; padding-right: 1rem; }
 }
