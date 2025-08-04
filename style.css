@@ -686,3 +686,42 @@ body {
 #plan-status {
     font-size: 2.2rem; /* Antes era 2rem */
 }
+/* --- REFINAMENTOS FINAIS DO FORMULÁRIO DE BUSCA --- */
+
+/* 1. Melhora o espaçamento geral do formulário */
+#lead-search-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem; /* Aumenta o espaço entre os grupos de label/input */
+}
+
+/* 2. Estiliza os Labels (Tipo de Negócio, Cidade) */
+.form-group label {
+    font-size: 0.875rem; /* Tamanho de letra um pouco menor */
+    font-weight: 500;
+    color: var(--secondary-text); /* Cor mais sutil */
+    display: block; /* Garante que o espaçamento abaixo funcione */
+    margin-bottom: 0.5rem; /* Adiciona um pequeno espaço entre o label e o campo */
+}
+
+/* 3. Estiliza os campos de texto (Inputs) */
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+    font-size: 1rem;
+    padding: 14px 16px; /* Aumenta o padding interno para um look mais moderno */
+    background-color: var(--dark-bg); /* Fundo mais escuro para contraste */
+    border: 1px solid var(--border-color);
+}
+
+.form-group input::placeholder {
+    color: #4B5563; /* Torna o placeholder um pouco mais sutil */
+}
+
+/* 4. Ajusta o botão de busca */
+#lead-search-form .button {
+    margin-top: 1rem; /* Garante um bom espaçamento final */
+    padding: 14px 24px; /* Deixa o botão um pouco maior */
+    width: fit-content; /* Faz o botão ter a largura do seu conteúdo */
+    align-self: flex-start; /* Alinha o botão à esquerda */
+}
