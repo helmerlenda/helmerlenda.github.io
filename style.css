@@ -575,3 +575,52 @@ body {
 .sidebar-nav .nav-link {
     text-decoration: none;
 }
+
+/* --- ESTILOS ATUALIZADOS DA SEÇÃO DE PREÇOS --- */
+
+.pricing-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+    align-items: center; /* Alinha os cards verticalmente */
+    margin-top: 3rem;
+}
+
+.pricing-card {
+    border: 1px solid var(--border-color);
+    padding: 2.5rem;
+    border-radius: 12px;
+    background-color: var(--dark-card);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden; /* Para o 'badge' de destaque */
+}
+
+.pricing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.price-description {
+    color: var(--secondary-text);
+    min-height: 40px; /* Garante alinhamento mesmo com textos de tamanhos diferentes */
+}
+
+/* Estilo para o card em destaque */
+.pricing-card.featured {
+    border-color: var(--primary-color);
+    transform: scale(1.05); /* Deixa ele um pouco maior */
+}
+
+.featured-badge {
+    position: absolute;
+    top: 15px;
+    right: -45px;
+    background: var(--primary-color);
+    color: white;
+    padding: 5px 40px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    transform: rotate(45deg);
+}
