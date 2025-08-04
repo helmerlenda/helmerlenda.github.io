@@ -3,39 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cadastro - Meu SaaS</title>
+    <title>Cadastro - LeadGen</title>
+
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
     <script src="auth.js" defer></script>
 </head>
-<body>
+<body class="auth-body">
 
-    <main class="main-content">
-        <section id="register-section" class="container">
-            <h2>Crie sua Conta</h2>
-            <p class="contact-subtitle">Comece agora a gerar leads para o seu negócio.</p>
-            
-            <form id="register-form">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required placeholder="seu.melhor@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required placeholder="Crie uma senha forte">
-                </div>
-                <button type="submit" class="button">Criar Conta</button>
-            </form>
-            <p style="text-align: center; margin-top: 1rem;">
-                Já tem uma conta? <a href="login.html">Faça Login</a>
-            </p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 [Seu Nome]. Todos os direitos reservados.</p>
+    <div class="auth-container">
+        <div class="auth-brand-column">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="LeadGen Logo" class="logo-image-nav">
+            </a>
+            <div class="brand-text">
+                <h2>Gere Leads, Não Listas.</h2>
+                <p>Crie sua conta e comece a encontrar os clientes certos em minutos.</p>
+            </div>
         </div>
-    </footer>
 
+        <div class="auth-form-column">
+            <div class="form-wrapper">
+                <h2>Crie sua Conta Gratuita</h2>
+                <p class="form-subtitle">Comece agora seu teste sem compromisso.</p>
+                
+                <form id="register-form">
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" required placeholder="Crie uma senha forte">
+                    </div>
+                    <button type="submit" class="button button-gradient">Criar Conta Grátis</button>
+                </form>
+                <p class="auth-switch-link">
+                    Já tem uma conta? <a href="login.html">Faça Login</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification-container"></div>
+    
 </body>
 </html>

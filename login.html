@@ -3,39 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Meu SaaS</title>
+    <title>Login - LeadGen</title>
+    
     <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Anton&family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
     <script src="auth.js" defer></script>
 </head>
-<body>
+<body class="auth-body">
 
-    <main class="main-content">
-        <section id="login-section" class="container">
-            <h2>Acesse sua Conta</h2>
-            <p class="contact-subtitle">Bem-vindo de volta!</p>
-            
-            <form id="login-form">
-                <div class="form-group">
-                    <label for="email">E-mail:</label>
-                    <input type="email" id="email" name="email" required placeholder="seu.melhor@email.com">
-                </div>
-                <div class="form-group">
-                    <label for="password">Senha:</label>
-                    <input type="password" id="password" name="password" required placeholder="Sua senha">
-                </div>
-                <button type="submit" class="button">Entrar</button>
-            </form>
-            <p style="text-align: center; margin-top: 1rem;">
-                Não tem uma conta? <a href="cadastro.html">Crie uma agora</a>
-            </p>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2025 [Seu Nome]. Todos os direitos reservados.</p>
+    <div class="auth-container">
+        <div class="auth-brand-column">
+            <a href="index.html" class="nav-logo">
+                <img src="logo.png" alt="LeadGen Logo" class="logo-image-nav">
+            </a>
+            <div class="brand-text">
+                <h2>Seus Próximos Clientes Estão a um Login de Distância.</h2>
+                <p>Acesse a plataforma que transforma dados em oportunidades de negócio.</p>
+            </div>
         </div>
-    </footer>
+
+        <div class="auth-form-column">
+            <div class="form-wrapper">
+                <h2>Bem-vindo de Volta!</h2>
+                <p class="form-subtitle">Insira suas credenciais para acessar seu dashboard.</p>
+                
+                <form id="login-form">
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required placeholder="seu.email@exemplo.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Senha:</label>
+                        <input type="password" id="password" name="password" required placeholder="••••••••">
+                    </div>
+                    <button type="submit" class="button button-gradient">Entrar</button>
+                </form>
+                <p class="auth-switch-link">
+                    Não tem uma conta? <a href="cadastro.html">Crie uma agora</a>
+                </p>
+            </div>
+        </div>
+    </div>
+    
+    <div id="notification-container"></div>
 
 </body>
 </html>
