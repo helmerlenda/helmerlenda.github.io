@@ -984,3 +984,103 @@ body {
     .features-section, .pricing-section, .hero-section { padding: 3.5rem 1rem; }
     .section-title { font-size: 2.5rem; }
 }
+/* --- ESTILOS DAS PÁGINAS DE AUTENTICAÇÃO --- */
+
+.auth-body {
+    background-color: var(--dark-bg);
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Evita barras de rolagem desnecessárias */
+}
+
+.auth-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Duas colunas de tamanho igual */
+    height: 100vh;
+}
+
+/* Coluna da Esquerda (Branding) */
+.auth-brand-column {
+    background-color: var(--dark-card);
+    padding: 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.auth-brand-column .nav-logo {
+    margin-bottom: auto; /* Empurra o texto principal para baixo */
+}
+
+.brand-text h2 {
+    font-family: var(--font-display);
+    font-size: 3rem;
+    color: var(--light-text);
+    line-height: 1.2;
+    margin-bottom: 1rem;
+}
+
+.brand-text p {
+    font-size: 1.1rem;
+    max-width: 400px;
+    color: var(--secondary-text);
+}
+
+/* Coluna da Direita (Formulário) */
+.auth-form-column {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 3rem;
+}
+
+.form-wrapper {
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-wrapper h2 {
+    font-family: var(--font-display);
+    font-size: 2.5rem;
+    color: var(--light-text);
+    margin-bottom: 0.5rem;
+    text-align: left;
+    border: none;
+}
+
+.form-wrapper .form-subtitle {
+    color: var(--secondary-text);
+    margin-bottom: 2rem;
+}
+
+#login-form .button,
+#register-form .button {
+    width: 100%;
+    padding: 14px;
+    margin-top: 1rem;
+}
+
+.auth-switch-link {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+}
+
+.auth-switch-link a {
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+/* Responsividade para as telas de autenticação */
+@media (max-width: 850px) {
+    .auth-container {
+        grid-template-columns: 1fr; /* Uma coluna só no mobile */
+    }
+    .auth-brand-column {
+        display: none; /* Esconde a coluna da marca no mobile para focar no formulário */
+    }
+    .auth-form-column {
+        align-items: flex-start;
+        padding-top: 4rem;
+    }
+}
