@@ -1,40 +1,53 @@
-// auth.js
-// auth.js
+// auth.js (Versão Completa e Final)
 
-// --- NOVO BLOCO DE VERIFICAÇÃO ---
-// Verifica se o usuário já tem um token ao carregar a página
+// --- FUNÇÃO PARA MOSTRAR NOTIFICAÇÕES PROFISSIONAIS ---
+// Esta função é necessária para as mensagens de sucesso e erro.
+const showNotification = (message, type = 'success') => {
+    // Primeiro, verifica se o container de notificações existe no HTML.
+    let container = document.getElementById('notification-container');
+    if (!container) {
+        // Se não existir, cria e adiciona ao corpo do documento.
+        container = document.createElement('div');
+        container.id = 'notification-container';
+        document.body.appendChild(container);
+    }
+    
+    const toast = document.createElement('div');
+    toast.className = `toast ${type}`;
+    
+    const iconClass = type === 'success' ? 'fa-check-circle' : 'fa-exclamation-circle';
+    toast.innerHTML = `<i class="fas ${iconClass}"></i><span>${message}</span>`;
+    
+    container.appendChild(toast);
+
+    // Remove a notificação após 5 segundos.
+    setTimeout(() => {
+        toast.remove();
+    }, 5000);
+};
+
+
+// --- BLOCO DE VERIFICAÇÃO INICIAL ---
+// Verifica se o usuário já tem um token e está tentando acessar as páginas de login/cadastro.
 const token = localStorage.getItem('authToken');
-
-if (token) {
-  // Se ele tem um token, significa que já está logado.
-  // Então, o redirecionamos direto para o dashboard, pois ele não precisa ver
-  // as páginas de login ou cadastro novamente.
+if (token && (window.location.pathname.endsWith('/login.html') || window.location.pathname.endsWith('/cadastro.html'))) {
+  // Se sim, redireciona imediatamente para o dashboard.
   window.location.href = 'dashboard.html';
 }
-// --- FIM DO NOVO BLOCO ---
-
-
-// O resto do seu código continua normalmente abaixo
+// --- LÓGICA PRINCIPAL DA PÁGINA ---
+// Só executa o resto do código depois que o HTML estiver totalmente carregado.
 document.addEventListener('DOMContentLoaded', () => {
-
+  
   const API_URL = 'https://portfolio-backend-api-h7t6.onrender.com';
 
-  // ... Lógica dos formulários de cadastro e login ...
-
-});
-// Espera o HTML carregar completamente
-document.addEventListener('DOMContentLoaded', () => {
-
-  // Define a URL base da nossa API que está na Render
-  const API_URL = 'https://portfolio-backend-api-h7t6.onrender.com';
 
   // --- LÓGICA PARA O FORMULÁRIO DE CADASTRO ---
   const registerForm = document.getElementById('register-form');
 
-  // Verifica se o formulário de cadastro existe na página atual
+
   if (registerForm) {
     registerForm.addEventListener('submit', async (event) => {
-      event.preventDefault(); // Impede o recarregamento da página
+      event.preventDefault();
 
       const email = document.getElementById('email').value;
       const password = document.getElementById('password').value;
@@ -49,16 +62,14 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (response.ok) {
-          alert('Cadastro realizado com sucesso! Você será redirecionado para o login.');
-          // Redireciona o usuário para a página de login após o sucesso
-          window.location.href = 'login.html';
+          showNotification('Cadastro realizado com sucesso! Redirecionando para o login...', 'success');
+          setTimeout(() => window.location.href = 'login.html', 2000);
         } else {
-          // Mostra a mensagem de erro que veio da API (ex: "Email já em uso")
-          alert(`Erro no cadastro: ${data.message}`);
+          showNotification(`Erro no cadastro: ${data.message}`, 'error');
         }
       } catch (error) {
         console.error('Erro de rede no cadastro:', error);
-        alert('Não foi possível se conectar ao servidor. Tente novamente.');
+        showNotification('Não foi possível se conectar ao servidor.', 'error');
       }
     });
   }
@@ -67,7 +78,7 @@ document.addEventListener('DOMContentLoaded', () => {
   // --- LÓGICA PARA O FORMULÁRIO DE LOGIN ---
   const loginForm = document.getElementById('login-form');
 
-  // Verifica se o formulário de login existe na página atual
+
   if (loginForm) {
     loginForm.addEventListener('submit', async (event) => {
       event.preventDefault();
@@ -85,23 +96,15 @@ document.addEventListener('DOMContentLoaded', () => {
         const data = await response.json();
 
         if (response.ok) {
-          // --- PONTO CHAVE: GUARDANDO O TOKEN ---
-          // 'localStorage' é um "pequeno cofre" no navegador.
-          // Guardamos o token aqui para que o usuário continue logado.
-          localStorage.setItem('authToken', data.token);
-
-          // Cole este bloco no lugar do seu alert() e window.location.href antigos
-showNotification('Login realizado com sucesso! Redirecionando...', 'success');
-setTimeout(() => {
-    window.location.href = 'dashboard.html';
-}, 1500); // Espera 1.5 segundos antes de redirecionar
+         localStorage.setItem('authToken', data.token);
+          showNotification('Login realizado com sucesso! Redirecionando...', 'success');
+          setTimeout(() => window.location.href = 'dashboard.html', 1500);
         } else {
-          // Mostra a mensagem de erro que veio da API (ex: "Credenciais inválidas")
-          alert(`Erro no login: ${data.message}`);
+          showNotification(`Erro no login: ${data.message}`, 'error');
         }
       } catch (error) {
         console.error('Erro de rede no login:', error);
-        alert('Não foi possível se conectar ao servidor. Tente novamente.');
+        showNotification('Não foi possível se conectar ao servidor.', 'error');
       }
     });
   }
