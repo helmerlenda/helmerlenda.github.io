@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
             const response = await fetch(`${API_URL}/api/documentos`);
             
             if (!response.ok) {
-                const errorData = await response.json();
+                const errorData = await response.json().catch(() => ({ message: 'Resposta inválida do servidor.' }));
                 throw new Error(errorData.message || 'Falha na rede');
             }
             const documentos = await response.json();
