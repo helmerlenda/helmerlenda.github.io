@@ -1,14 +1,15 @@
-// dashboard-publico.js (Versão Corrigida)
+// dashboard-publico.js (Versão Corrigida e Simplificada)
 
 document.addEventListener('DOMContentLoaded', () => {
-    // O nome da sua API estava diferente no código anterior
-    const API_URL = 'https://portfolio-backend-helme.onrender.com'; 
+    
+    // O nome correto do seu serviço na Render é 'portfolio-backend-helme'
+    const API_URL = 'https://portfolio-backend-helme.onrender.com';
     const documentosListDiv = document.getElementById('documentos-list');
 
     const renderDocumentos = (documentos) => {
         if (!documentosListDiv) return;
 
-        documentosListDiv.innerHTML = '';
+        documentosListDiv.innerHTML = ''; // Limpa a área
         if (documentos.length === 0) {
             documentosListDiv.innerHTML = '<p>Nenhum documento processado ainda.</p>';
             return;
@@ -20,10 +21,10 @@ document.addEventListener('DOMContentLoaded', () => {
             <thead>
                 <tr>
                     <th>ID</th>
-                    <th>Assinaturas</th>
+                    <th>Assinaturas (5)</th>
                     <th>Reconhecimento Facial</th>
                     <th>Hash</th>
-                    <th>Data</th>
+                    <th>Data de Criação</th>
                 </tr>
             </thead>
         `;
@@ -34,11 +35,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const signCount = [doc.assinatura_1, doc.assinatura_2, doc.assinatura_3, doc.assinatura_4, doc.assinatura_5].filter(Boolean).length;
             
             row.innerHTML = `
-                <td>${doc.id}</td>
-                <td>${signCount} de 5</td>
-                <td>${doc.reconhecimento_facial || 'N/A'}</td>
-                <td>${doc.hash ? doc.hash.substring(0, 10) + '...' : 'N/A'}</td>
-                <td>${new Date(doc.created_at).toLocaleString('pt-BR')}</td>
+                <td data-label="ID">${doc.id}</td>
+                <td data-label="Assinaturas">${signCount} de 5</td>
+                <td data-label="Reconhecimento Facial">${doc.reconhecimento_facial || 'N/A'}</td>
+                <td data-label="Hash">${doc.hash ? doc.hash.substring(0, 10) + '...' : 'N/A'}</td>
+                <td data-label="Data">${new Date(doc.created_at).toLocaleString('pt-BR')}</td>
             `;
             tbody.appendChild(row);
         });
@@ -47,12 +48,19 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     const fetchDocumentos = async () => {
-        // Verifica se o elemento existe antes de tentar buscar
-        if (!documentosListDiv) return; 
+        if (!documentosListDiv) {
+            console.error("Elemento 'documentos-list' não encontrado na página.");
+            return;
+        }
 
+        documentosListDiv.innerHTML = '<p>Carregando dados...</p>';
         try {
+            // A chamada correta para a nova rota pública
             const response = await fetch(`${API_URL}/api/documentos`);
-            if (!response.ok) throw new Error('Falha ao buscar dados.');
+            
+            if (!response.ok) {
+                throw new Error(`Falha na rede: ${response.statusText}`);
+            }
             const documentos = await response.json();
             renderDocumentos(documentos);
         } catch (error) {
@@ -61,6 +69,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Inicia a busca de dados
+    // Inicia a busca de dados assim que a página carrega
     fetchDocumentos();
 });
