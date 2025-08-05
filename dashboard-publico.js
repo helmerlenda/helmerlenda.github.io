@@ -1,15 +1,15 @@
-// dashboard-publico.js (Versão Corrigida e Simplificada)
+// dashboard-publico.js (Versão Final e Corrigida)
 
 document.addEventListener('DOMContentLoaded', () => {
     
-    // O nome correto do seu serviço na Render é 'portfolio-backend-helme'
+    // A URL CORRETA do seu serviço na Render
     const API_URL = 'https://portfolio-backend-helme.onrender.com';
     const documentosListDiv = document.getElementById('documentos-list');
 
     const renderDocumentos = (documentos) => {
         if (!documentosListDiv) return;
 
-        documentosListDiv.innerHTML = ''; // Limpa a área
+        documentosListDiv.innerHTML = '';
         if (documentos.length === 0) {
             documentosListDiv.innerHTML = '<p>Nenhum documento processado ainda.</p>';
             return;
@@ -55,11 +55,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
         documentosListDiv.innerHTML = '<p>Carregando dados...</p>';
         try {
-            // A chamada correta para a nova rota pública
             const response = await fetch(`${API_URL}/api/documentos`);
             
             if (!response.ok) {
-                throw new Error(`Falha na rede: ${response.statusText}`);
+                const errorData = await response.json();
+                throw new Error(errorData.message || 'Falha na rede');
             }
             const documentos = await response.json();
             renderDocumentos(documentos);
@@ -69,6 +69,5 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // Inicia a busca de dados assim que a página carrega
     fetchDocumentos();
 });
